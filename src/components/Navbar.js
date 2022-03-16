@@ -3,10 +3,12 @@ import Navbar from 'react-bootstrap/Navbar';
 import Container from 'react-bootstrap/Container';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Nav from 'react-bootstrap/Nav';
-import pushItems from './types/functional';
+import CartWidget from './CartWidget';
 
-function callback (e){
-    pushItems(e)
+
+function callback(eventKey) {
+
+    console.log(eventKey)
 };
 const Menu = _ => {
     return (
@@ -22,6 +24,7 @@ const Menu = _ => {
                     />
                 </Navbar.Brand>
             </Container>
+            <CartWidget />
             <Nav onSelect={callback}>
                 <NavDropdown title="Desayuno" id="nav-dropdown">
                     <NavDropdown.Item eventKey="coffee">Cafe</NavDropdown.Item>
@@ -42,7 +45,9 @@ const Menu = _ => {
                     <NavDropdown.Item eventKey="4.2">Vino</NavDropdown.Item>
                 </NavDropdown>
             </Nav>
+
         </Navbar>
+
     )
 };
 export default Menu;

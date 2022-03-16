@@ -1,15 +1,15 @@
 import React from 'react';
 import './styles/App.scss';
 import Header from './components/Navbar';
+import PushItems from './components/PushProduct';
 
 
 function App() {
   return (
     <div className="App">
       <Header />
-      <div>
-        <pushItems />
-      </div>
+      
+      <PushItems />
 
     </div>
   );

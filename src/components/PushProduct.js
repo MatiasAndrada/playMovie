@@ -1,25 +1,28 @@
-import React from 'react';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 
-const pushItems = (array) =>{
-    for (const p of array) {
-        return (
+
+
+const PushProduct = (array) =>{
+        console.log(array)
+        
+    
+    return (
             <Card style={{ width: '18rem' }}>
-                <Card.Img variant="top" src= {p.img} />
+                <Card.Img variant="top" src= "https://labebidadetusfiestas.com.ar/38326/fernet-branca-750cc.jpg" />
                 <Card.Body>
-                    <Card.Title>${p.tipo}</Card.Title>
+                    <Card.Title>Title card</Card.Title>
                     <Card.Text>
-                        {p.img}
+                        precio de card
                     </Card.Text>
                     <div className="d-grid gap-2">
                         <Button variant="outline-success" size="lg">
-                            {p.precio}
+                            Comprar
                         </Button>
                     </div>
                 </Card.Body>
             </Card>
         )
     }
-}
-export default pushItems;
+
+export default PushProduct;
