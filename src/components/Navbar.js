@@ -4,13 +4,16 @@ import Container from 'react-bootstrap/Container';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Nav from 'react-bootstrap/Nav';
 import CartWidget from './CartWidget';
+import Products from './Products/Products';
+
 
 
 function callback(eventKey) {
-
+    Products(eventKey)
     console.log(eventKey)
 };
-const Menu = _ => {
+
+const Header = () => {
     return (
         <Navbar bg="dark" >
             <Container>
@@ -42,7 +45,7 @@ const Menu = _ => {
                 </NavDropdown>
                 <NavDropdown title="Cena" id="nav-dropdown">
                     <NavDropdown.Item eventKey="comidaD">Comida</NavDropdown.Item>
-                    <NavDropdown.Item eventKey="4.2">Vino</NavDropdown.Item>
+                    <NavDropdown.Item eventKey="vino">Vino</NavDropdown.Item>
                 </NavDropdown>
             </Nav>
 
@@ -50,4 +53,4 @@ const Menu = _ => {
 
     )
 };
-export default Menu;
+export default Header;

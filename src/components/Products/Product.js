@@ -1,19 +1,15 @@
+import React from 'react';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 
-
-
-const PushProduct = (array) =>{
-        console.log(array)
-        
-    
-    return (
+const PushPrdt = (props) => {
+        return (
             <Card style={{ width: '18rem' }}>
-                <Card.Img variant="top" src= "https://labebidadetusfiestas.com.ar/38326/fernet-branca-750cc.jpg" />
+                <Card.Img variant="top" src={props.img} />
                 <Card.Body>
-                    <Card.Title>Title card</Card.Title>
+                    <Card.Title>{props.tipo}</Card.Title>
                     <Card.Text>
-                        precio de card
+                        {props.precio}
                     </Card.Text>
                     <div className="d-grid gap-2">
                         <Button variant="outline-success" size="lg">
@@ -25,4 +21,5 @@ const PushProduct = (array) =>{
         )
     }
 
-export default PushProduct;
+
+export default PushPrdt;
