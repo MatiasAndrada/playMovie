@@ -2,17 +2,17 @@ import React from 'react';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 
-const PushPrdt = (props) => {
+const Item = (data) => {
         return (
             <Card style={{ width: '18rem' }}>
-                <Card.Img variant="top" src={props.img} />
+                <Card.Img variant="top" src={data.img} />
                 <Card.Body>
-                    <Card.Title>{props.tipo}</Card.Title>
+                    <Card.Title>{data.tipo}</Card.Title>
                     <Card.Text>
-                        {props.precio}
+                        {data.precio}
                     </Card.Text>
                     <div className="d-grid gap-2">
-                        <Button variant="outline-success" size="lg">
+                        <Button variant="outline-success" size="sm">
                             Comprar
                         </Button>
                     </div>
@@ -22,4 +22,4 @@ const PushPrdt = (props) => {
     }
 
 
-export default PushPrdt;
+export default Item;

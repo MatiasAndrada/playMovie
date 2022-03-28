@@ -4,12 +4,12 @@ import Container from 'react-bootstrap/Container';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Nav from 'react-bootstrap/Nav';
 import CartWidget from './CartWidget';
-import Products from './Products/Products';
+
 
 
 
 function callback(eventKey) {
-    Products(eventKey)
+
     console.log(eventKey)
 };
 
