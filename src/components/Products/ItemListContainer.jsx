@@ -4,7 +4,7 @@ import ItemList from "./ItemList";
 
 const ItemListContainer = () => {
   const [productList, setProductList] = useState([]);
-  console.log("🦇 ~ file: ItemListContainer.jsx ~ line 7 ~ ItemListContainer ~ productList", productList)
+
   const [cargando, setCargando] = useState(false);
 
   useEffect(() => {

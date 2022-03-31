@@ -3,7 +3,8 @@ import Navbar from 'react-bootstrap/Navbar';
 import Container from 'react-bootstrap/Container';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Nav from 'react-bootstrap/Nav';
-import CartWidget from './CartWidget';
+import Search from './Search';
+import ArrayAddMovie from '../ArrayAddMovie';
 
 
 
@@ -13,7 +14,7 @@ function callback(eventKey) {
     console.log(eventKey)
 };
 
-const Header = () => {
+const NavBar = () => {
     return (
         <Navbar bg="dark" >
             <Container>
@@ -27,7 +28,7 @@ const Header = () => {
                     />
                 </Navbar.Brand>
             </Container>
-            <CartWidget />
+            <ArrayAddMovie/>
             <Nav onSelect={callback}>
                 <NavDropdown title="Desayuno" id="nav-dropdown">
                     <NavDropdown.Item eventKey="coffee">Cafe</NavDropdown.Item>
@@ -48,9 +49,8 @@ const Header = () => {
                     <NavDropdown.Item eventKey="vino">Vino</NavDropdown.Item>
                 </NavDropdown>
             </Nav>
-
         </Navbar>
 
     )
 };
-export default Header;
+export default NavBar;
