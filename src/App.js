@@ -2,7 +2,9 @@ import React from 'react';
 import './styles/App.scss';
 import ItemCount from './components/ItemCount';
 import NavBar from './components/NavBar/NavBar';
-import Search from './components/NavBar/Search';
+import MovieList from './components/Movies/MovieList'
+
+
 
 
 const stock = 10;
@@ -11,15 +13,14 @@ function App() {
   return (
     <div className="App">
       <NavBar />
-      <Search/>
-
-      
       <ItemCount 
       stock={stock}
       initial={initial}
       />
+
+      <MovieList/>
+
     </div>
   );
 }
- 
 export default App;

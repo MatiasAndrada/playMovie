@@ -1,14 +1,31 @@
-import React from 'react'
+import React, { useState } from "react";
 import Movie from '../Movies/Movie'
+//redux
+import store from "../../store";
 
-const MovieList = ({ productList }) => {
-    return (
-        <div className="row">
-            {
-                productList.map((i) => <Movie key={i.imdbID} Title={i.Title} Poster={i.Poster} Year={i.Year} Type={i.Type}/>)
-            }
-        </div>
-    )
-}
+
+
+const MovieList = () => {
+  const [state, setState] = useState([]);
+  console.log("🦇 ~ file: MovieList.jsx ~ line 10 ~ MovieList ~ state", state)
+
+  store.subscribe(stateChange);
+
+  function stateChange() {
+    setState(store.getState()
+    .movieSlice
+    .list);
+  }
+
+
+
+  return (
+    <div className="row">
+      {
+        state.map((data) => <Movie key={data.imdbID} Title={data.Title} Poster={data.Poster} Year={data.Year} Type={data.Type}/>)
+      }
+    </div>
+  );
+};
 
 export default MovieList;
