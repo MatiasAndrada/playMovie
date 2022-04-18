@@ -1,0 +1,33 @@
+@function shadow($color) {
+    @return 0 0 7px #fff,
+    0 0 10px #fff,
+    0 0 21px #fff,
+    0 0 42px $color,
+    0 0 82px $color,
+    0 0 92px $color,
+    0 0 102px $color,
+    0 0 151px $color;
+}
+
+$headings: (
+    h1: 3.5em,
+    h2: 2.2em,
+    h3: 1.4em,
+    h4: 0.7em,
+    p: 1.1em);
+$colors: (
+    A: #0A0908,
+    B: #3B28CC,
+    C: #BE3F23,
+    D: #197ba5,
+    E: #74a2a4,
+    );
+$b-radius: (
+    1: 12px,
+    2: 24px,
+    3: 32px,   
+);
+$font-tittle: 'Montserrat';
+$font-subtittle: 'Allison';
+$font-paragraph: 'Heebo';
+$textcolor: #edf2f4;

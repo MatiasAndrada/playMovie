@@ -1,0 +1,20 @@
+@import "../../styles/variables.scss";
+
+.container__bg{
+    .bg__text{
+        height: auto;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translateX(-50%) translateY(-50%);
+        text-align: center;
+        color: $textcolor;
+        font-size: map-get($headings, h1);
+        text-shadow: shadow(map-get($colors, B));
+    }
+    .container__bg--url{
+        z-index: -1;
+        height: 100vh;
+        background: url(../../assets/svg/Bg/bgSVG.svg);
+    }
+}

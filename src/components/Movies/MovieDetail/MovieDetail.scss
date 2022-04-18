@@ -1,0 +1,56 @@
+@import "../../../styles/variables.scss";
+
+.modal__container {
+  .modal__header {
+    background-color: map-get($colors, A);
+    .header__title {
+      text-align: end;
+      font-size: map-get($headings, h2);
+    }
+  }
+  .modal__body {
+    display: flex;
+    background-color: map-get($colors, B);
+    .body__poster {
+      border-radius: map-get($b-radius, 2);
+      box-shadow: 0 0 10px rgb(16, 91, 183), 0 0 21px rgb(123, 212, 242);
+      margin: 15px;
+    }
+    .body__text {
+      color: map-get($colors, A);
+      .text__tittle {
+        text-align: center;
+        font-size: map-get($headings, h2);
+        color: $textcolor;
+        text-shadow: shadow(map-get($colors, B));
+      }
+      .box__description {
+        margin-left: 5em;
+        background-color: map-get($colors, C);
+        border-radius: map-get($b-radius, 1);
+        .text__description {
+          color: $textcolor;
+          text-align: right;
+          font-size: map-get($headings, p);
+          padding: 18px;
+        }
+      }
+    }
+    .container__item {
+      display: flex;
+      flex-direction: column;
+      align-content: space-between;
+      justify-content: center;
+      .box__item {
+        display: flex;
+        align-content: center;
+        width: auto;
+
+        .item__text {
+          color: $textcolor;
+          
+        }
+      }
+    }
+  }
+}

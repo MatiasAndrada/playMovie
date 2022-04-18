@@ -1,0 +1,17 @@
+@import "/src/styles/variables.scss";
+
+.container__navbar {
+  position: fixed;
+  width: 100%;
+  background-color: map-get($colors, A);
+   .nav_dropdown {
+        background-color: map-get($colors, C);
+        border-radius: map-get($b-radius, 2);
+        margin-right: 1em;
+        font-size: map-get($headings, h3);
+    .dropdown__item {
+        font-size: map-get($headings, h4);
+        text-decoration: none;
+    }
+  } 
+}

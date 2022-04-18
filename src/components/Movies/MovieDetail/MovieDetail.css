@@ -1,0 +1,75 @@
+.modal__container .modal__header {
+  background-color: #0A0908;
+}
+
+.modal__container .modal__header .header__title {
+  text-align: end;
+  font-size: 2.2em;
+}
+
+.modal__container .modal__body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  background-color: #3B28CC;
+}
+
+.modal__container .modal__body .body__poster {
+  border-radius: 24px;
+  -webkit-box-shadow: 0 0 10px #105bb7, 0 0 21px #7bd4f2;
+          box-shadow: 0 0 10px #105bb7, 0 0 21px #7bd4f2;
+  margin: 15px;
+}
+
+.modal__container .modal__body .body__text {
+  color: #0A0908;
+}
+
+.modal__container .modal__body .body__text .text__tittle {
+  text-align: center;
+  font-size: 2.2em;
+  color: #edf2f4;
+  text-shadow: 0 0 7px #fff, 0 0 10px #fff, 0 0 21px #fff, 0 0 42px #3B28CC, 0 0 82px #3B28CC, 0 0 92px #3B28CC, 0 0 102px #3B28CC, 0 0 151px #3B28CC;
+}
+
+.modal__container .modal__body .body__text .box__description {
+  margin-left: 5em;
+  background-color: #BE3F23;
+  border-radius: 12px;
+}
+
+.modal__container .modal__body .body__text .box__description .text__description {
+  color: #edf2f4;
+  text-align: right;
+  font-size: 1.1em;
+  padding: 18px;
+}
+
+.modal__container .modal__body .container__item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-line-pack: justify;
+      align-content: space-between;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.modal__container .modal__body .container__item .box__item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  width: auto;
+}
+
+.modal__container .modal__body .container__item .box__item .item__text {
+  color: #edf2f4;
+}
+/*# sourceMappingURL=MovieDetail.css.map */
