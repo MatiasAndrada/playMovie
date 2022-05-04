@@ -13,7 +13,7 @@ const Movie = (data) => {
 
   return (
     <div className="card">
-      <img src={data.Poster} alt="poster" />
+      <img className="card-image" src={data.Poster} alt="poster" />
       <h2 className="card-tittle">{data.Title}</h2>
       <h3 className="card-subtitle"> {data.Year}</h3>
       <button
@@ -21,8 +21,7 @@ const Movie = (data) => {
         variant="outline-success"
         value={data.imdbID}
         onClick={(e) => onClick(e)}
-      >
-          +
+      >Ver detalles
       </button>  
     </div>
   );

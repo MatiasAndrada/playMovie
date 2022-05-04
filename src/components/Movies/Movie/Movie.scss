@@ -1,5 +1,8 @@
 @import"../../../styles/variables.scss";
+
 .card{
+    display: flex;
+    align-items: center;
     margin: 32px;
     width: 220px;
     height: 320px;
@@ -11,14 +14,13 @@
     box-shadow: 3px 3px 10px
     #070707;
     position: relative;
-    overflow: hidden;
+    overflow: hidden; 
     .card-image{
         position: absolute;
         inset: 0;
         width: 100%;
         height: 100%;
         object-fit: cover;
-        opacity: .6;
         transition: transform .75s;
     }
     .card-tittle{
@@ -32,24 +34,72 @@
     .card-subtitle{
         position: absolute;
         color: $textcolor;
-        top: 15px;
-        right: 15px;
+        bottom: 12px;
+        left: 15px;
         text-align: right;
-        font-size: map-get($headings, p);
-        text-shadow: $textShasowEffect
+        font-size: map-get($headings, h4);
     }
     .button{
-        position: absolute;
-        color: $textcolor;
-        font-size: map-get($headings, h3);
-        text-shadow: $textShasowEffect;
-        border-radius: map-get($b-radius, 1);
-        bottom: 16px;
-        height: 12px;
-        width: 100%;
+        width: fit-content;
+        top: 6px;
+        height: 25px;
+        border: none;
+        outline: none;
+        color: #fff;
+        background: #111;
+        cursor: pointer;
+        position: relative;
+        z-index: 0;
+        border-radius: 10px;
     }
     
+    .button:before {
+        content: '';
+        background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+        position: absolute;
+        top: -2px;
+        left:-2px;
+        background-size: 400%;
+        z-index: -1;
+        filter: blur(5px);
+        width: calc(100% + 4px);
+        height: calc(100% + 4px);
+        animation: glowing 20s linear infinite;
+        opacity: 0;
+        transition: opacity .3s ease-in-out;
+        border-radius: 10px;
+    }
+    
+    .button:active {
+        color: #000
+    }
+    
+    .button:active:after {
+        background: transparent;
+    }
+    
+    .button:hover:before {
+        opacity: 1;
+    }
+    
+    .button:after {
+        z-index: -1;
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: #111;
+        left: 0;
+        top: 0;
+        border-radius: 10px;
+    }
+    
+    @keyframes glowing {
+        0% { background-position: 0 0; }
+        50% { background-position: 400% 0; }
+        100% { background-position: 0 0; }
+    }
 }
-.card:over{
+.card:hover .card-image{
     transform: scale(1.15);
 }
