@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import Movie from "../Movies/Movie";
+import Movie from "../Movie/Movie";
 //import Loading from "../Loading/Loading";
 //redux
-import store from "../../store";
+import store from "../../../store";
 
 const MovieList = () => {
   //const [loading, setLoading] = useState()
@@ -14,7 +14,8 @@ const MovieList = () => {
   }
 
   return (
-    <div className="row d-flex justify-content-evenly">
+
+    <div className="movieList">
       {state.map((data) => (
         <Movie
           key={data.imdbID}

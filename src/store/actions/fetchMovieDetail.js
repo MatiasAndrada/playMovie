@@ -7,7 +7,6 @@ export const fetchMovieDetail = (ID) => async (dispatch) => {
     const API_PROPS=`&plot=full`
     const API_RES = await axios.get(API_URL + `&i=${ID}`  + API_PROPS);
     const arrayDetail= API_RES.data;
-    console.log("🦇 ~ file: fetchMovieDetail.js ~ line 10 ~ fetchMovieDetail ~ arrayDetail", arrayDetail)
     dispatch(setMovieDetail(arrayDetail));
     
   } catch (error) {

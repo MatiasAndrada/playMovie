@@ -1,17 +1,18 @@
 import React, {useState} from "react";
 import { useDispatch } from "react-redux";
 import { fetchAllMovies } from "../../store/actions/fetchMovies";
+import { useNavigate } from "react-router-dom";
 
 const Search = () => {
+  const navigate = useNavigate();
   const [value, setValue] = useState("")
   const dispatch = useDispatch();
   
   const onSubmit = (e) => {
 		e.preventDefault();
     dispatch(fetchAllMovies(value))
+    navigate('/movieList')
 		}
-  
-
   return (
     <div className="col-md-4">
       <form onSubmit={(e) => onSubmit(e)}>

@@ -1,8 +1,16 @@
 @import "/node_modules/bootstrap/scss/bootstrap.scss";
 @import 'variables.scss';
+//App
 @import "../components/Home/Home.scss";
-@import "../components/Movies/MovieDetail/MovieDetail.scss";
 @import "../components/NavBar/NavBar.scss";
-@import "../components/Auth/Auth.scss";
+//Auth
+@import "../components/Auth/SignIn/SignIn.scss";
+@import "../components/Auth/LogIn/Login.scss";
+//Movie
+@import "../components/Movies/MovieDetail/MovieDetail.scss";
+@import"../components/Movies/MovieList/MovieList.scss";
+@import"../components/Movies/Movie/Movie.scss";
 
-
+body{
+    background-color: black;
+}

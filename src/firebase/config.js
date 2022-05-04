@@ -1,7 +1,9 @@
-import React from 'react'
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getDownloadURL, ref, getStorage } from "firebase/storage";
+import { getAuth } from "firebase/auth"
+import { getStorage } from "firebase/storage";
+import { getFirestore } from "firebase/firestore";
+
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -17,22 +19,7 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const storage = getStorage();
-const BgREF = ref(storage, "image/BgLogin.jpg")
-
-
-
-const PRUEBA = () => {
-  return (
-    <div>firebase</div>
-  )
-}
-
-export default PRUEBA
-getDownloadURL(BgREF)
-console.log("🚀 ~ file: firebase.js ~ line 23 ~ BgREF", BgREF)
-.then(url => {
-  console.log("me iicie")
-    console.log(url);
-})
-
+const db = getFirestore(app)
+export const auth = getAuth(app)
+export const storage = getStorage(app)
+export default db;

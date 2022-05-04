@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Modal from "react-bootstrap/Modal";
 import ItemCount from "../../ItemCount/ItemCount";
 import store from "../../../store";
@@ -7,14 +7,19 @@ import DetailIcon from "./DetailIcon";
 const MovieDetail = () => {
   const [detail, setDetail] = useState([]);
   const [show, setShow] = useState(false);
-  store.subscribe(stateChange);
 
-  function stateChange() {
-    setDetail(store.getState().movieSlice.listMovieDetail);
-    setShow(true);
+  useEffect(() => {
+    const update = () => {
+      const stateStore = store.getState().movieSlice.listMovieDetail
+      if(stateStore.length != 0){
+        setDetail(stateStore)
+        setShow(true)
+        }else{}
   }
-
-  return (
+  store.subscribe(update)
+})
+  
+    return (
     <>
       <Modal
         className="modal__container"
@@ -39,15 +44,6 @@ const MovieDetail = () => {
         </Modal.Footer>
       </Modal>
     </>
-  );
-};
+  )
+}
 export default MovieDetail;
-
-/*TIEMPO 
-  GENERO 
-  DIRECTOR 
-  ACTORES
-  DESCRIPCION - plot
-  LENGUAJE
-  PAIS 
-  PREMIOS*/

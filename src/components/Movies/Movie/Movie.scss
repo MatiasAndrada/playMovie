@@ -1,0 +1,55 @@
+@import"../../../styles/variables.scss";
+.card{
+    margin: 32px;
+    width: 220px;
+    height: 320px;
+    background-color: #666;
+    border-radius: map-get($b-radius, 2);
+    outline: 1px solid 
+    #e4dbe4;
+    outline-offset: -8px;
+    box-shadow: 3px 3px 10px
+    #070707;
+    position: relative;
+    overflow: hidden;
+    .card-image{
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: .6;
+        transition: transform .75s;
+    }
+    .card-tittle{
+        position: absolute;
+        color: $textcolor;
+        left: 15px;
+        bottom: 24px;
+        font-size: map-get($headings, p);
+        text-shadow: $textShasowEffect
+    }
+    .card-subtitle{
+        position: absolute;
+        color: $textcolor;
+        top: 15px;
+        right: 15px;
+        text-align: right;
+        font-size: map-get($headings, p);
+        text-shadow: $textShasowEffect
+    }
+    .button{
+        position: absolute;
+        color: $textcolor;
+        font-size: map-get($headings, h3);
+        text-shadow: $textShasowEffect;
+        border-radius: map-get($b-radius, 1);
+        bottom: 16px;
+        height: 12px;
+        width: 100%;
+    }
+    
+}
+.card:over{
+    transform: scale(1.15);
+}
