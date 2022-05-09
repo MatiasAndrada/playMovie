@@ -1,15 +1,16 @@
 import * as React from "react"
 
-export const LenguageSVG = (props) => (
+export const LanguageSVG = (props) => (
   <svg
     id="Layer_1"
     data-name="Layer 1"
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 200 200"
+    
     {...props}
   >
     <defs>
-      <style>{".cls-1{fill:#231f20}"}</style>
+      <style>{".cls-1{fill:#edf2f4}"}</style>
     </defs>
     <title>{"Wondicon - UI (Free)"}</title>
     <path

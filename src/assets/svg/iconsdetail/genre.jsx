@@ -9,7 +9,7 @@ export const GenreSVG = (props) => (
   >
     <g
       fill="none"
-      stroke="#000"
+      stroke="#edf2f4"
       strokeLinecap="round"
       strokeLinejoin="round"
       strokeMiterlimit={10}

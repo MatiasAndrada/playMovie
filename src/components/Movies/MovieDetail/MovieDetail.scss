@@ -6,47 +6,59 @@
     display: flex;
     background-color: map-get($colors, A);
     .body__poster {
+      height: 400px;
       border-radius: map-get($b-radius, 2);
       box-shadow: 0 0 10px rgb(22, 165, 201), 0 0 21px rgb(86, 96, 172);
       margin: 12px;
     }
     .body__text {
       color: map-get($colors, A);
-      .text__tittle {
+      .text__title {
         text-align: center;
-        font-size: map-get($headings, h2);
-
+        font-size: map-get($headings, h3);
         text-shadow: shadow(map-get($colors, D));
+      }
+      .body__button--favorite{
+        width: 32x;
+        height: 24px;
+        background-color: map-get($colors, C);
+        border-radius: map-get($b-radius, 1);
       }
       .box__description {
         margin-top: 2em;
-        margin-left: 5em;
+        margin-left: 4em;
         background-color: map-get($colors, D);
-
-        border-radius: map-get($b-radius, 1);
+        border-radius: map-get($b-radius, 1); 
         .text__description {
-
           text-align: right;
-          font-size: map-get($headings, p);
+          font-size: map-get($headings, h4);
           padding: 18px;
         }
       }
     }
     .container__item {
       display: flex;
-      flex-direction: column;
+      flex-direction: row;
+      flex-wrap: wrap;
       align-content: space-between;
       justify-content: center;
+      right: 20px;
       .box__item {
-        display: flex;
-        align-content: center;
-        width: auto;
-
+        align-self: flex-end;
+        width: fit-content;
         .item__text {
+          position: relative;
+          float: right;
+          text-align: end;
           color: $textcolor;
-          
+          font-size: map-get($headings, h4);
         }
       }
+    }
+    .ec-stars{
+      font-size: 32px;
+      color: $textcolor;
+      bottom: 5px;
     }
   }
 }
