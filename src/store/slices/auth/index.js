@@ -29,11 +29,20 @@ export const authSlice = createSlice({
         user: action.payload,
       };
     },
+    setUserLogOut: (state)=>{
+      return{
+        ...state,
+        loading: false,
+        activo: false,
+        error: "",
+        user: {},
+      }
+    },
     state: (state) => {
       return { ...state };
     },
   },
 });
-export const { loading, setUserError, setUserSuccess, state } =
+export const { loading, setUserError, setUserSuccess, setUserLogOut, state } =
   authSlice.actions;
 export default authSlice.reducer;

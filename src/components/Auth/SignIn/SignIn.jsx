@@ -1,7 +1,7 @@
 //react
 import React, { useState } from "react";
 //react-router-dom
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 //firebase-auth
 import { signUp } from "../../../store/actions/auth/signUpActions";
 //firebase-storage
@@ -11,17 +11,8 @@ import { useDispatch } from "react-redux";
 import store from "../../../store";
 
 const SignUp = () => {
-  const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [state, setState] = useState({
-    activo: false,
-    error: "",
-    loading: false,
-    user: {
-      email: "",
-      uid: "",
-    },
-  });
+  const [error, setError] = useState(" ");
 
   const [datos, setDatos] = useState({
     email: "",
@@ -39,12 +30,7 @@ const SignUp = () => {
   };
   store.subscribe(updateData);
   function updateData() {
-    setState(store.getState().authSlice);
-  }
-
-  if (state.activo === true) {
-    navigate("/");
-  } else {
+    setError(store.getState().authSlice.error);
   }
 
   function setImg(imgID, url) {
@@ -69,7 +55,7 @@ const SignUp = () => {
           <img src="" id="icon-card" className="icon-card" alt="Icon account" />
         </div>
         <div className="card-body">
-          {state.error && <p className="error">{state.error}</p>}
+          {error && <p className="error">{error}</p>}
           <form className="container___form">
             <input
               className="form__input"

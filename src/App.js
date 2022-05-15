@@ -1,9 +1,10 @@
-import React from "react";
-import { Routes, Route } from "react-router-dom";
+import React, {useState} from "react";
+import { Routes, Route, useNavigate } from "react-router-dom";
 
 // styles
 import "./styles/App.scss";
-// Firebase
+// Redux
+import store from "./store";
 
 // components
 import NavBar from "./components/NavBar/NavBar";
@@ -18,9 +19,28 @@ import SignIn from "./components/Auth/SignIn/SignIn";
 
 /* const stock = 10;
 const initial = 1; */
-
 function App() {
-
+  const navigate = useNavigate();
+  const [state, setState] = useState({
+    activo: false,
+    error: "",
+    loading: false,
+    user: {
+      email: "",
+      uid: "",
+    },
+  });
+  store.subscribe(updateData);
+  function updateData() {
+    setState(store.getState().authSlice);
+    redirect();
+  }
+  function redirect() {
+    if (state.activo === true) {
+      navigate("/");
+    } else {
+    }
+  }
    return (
     <div>
       <NavBar />

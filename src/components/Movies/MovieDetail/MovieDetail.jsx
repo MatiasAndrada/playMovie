@@ -10,10 +10,13 @@ const MovieDetail = () => {
   const [show, setShow] = useState(false);
 
   function addFavorite(){
-    const Title = detail.Title;
-    const Poster = detail.Poster;
-    const ID = detail.imdbID
-    newMovieFav(Title, Poster, ID)
+    console.log("btn")
+    const data = {
+    ID: detail.imdbID,
+    Title: detail.Title,
+    Poster: detail.Poster,
+    }
+    newMovieFav(data)
   }
   useEffect(() => {
     const update = () => {

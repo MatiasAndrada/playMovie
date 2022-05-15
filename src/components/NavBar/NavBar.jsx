@@ -1,11 +1,17 @@
 import React from "react";
-import { fileDownload } from "../../firebase/fileDowload";
+// react-bootstrap
 import { Dropdown } from "react-bootstrap";
 import Navbar from "react-bootstrap/Navbar";
+
+import { fileDownload } from "../../firebase/fileDowload";
+import { logOut } from "../../store/actions/auth/logOut";
 import Search from "./Search";
+
+
 const NavBar = () => {
   
-  function logOut () {
+  function handleClick () {
+    logOut()
   }
   function setImg(imgID, url) {
     fileDownload(url)
@@ -44,7 +50,7 @@ const NavBar = () => {
           </Dropdown.Toggle>
             
           <Dropdown.Menu className="dropDownMenu">
-            <Dropdown.Item onClick={logOut} className="dropDownItem">
+            <Dropdown.Item onClick={handleClick} className="dropDownItem">
                 Log Out
             </Dropdown.Item>
           </Dropdown.Menu>

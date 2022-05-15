@@ -1,27 +1,16 @@
 //react
 import React, { useState } from "react";
 //react-router-dom
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 //firebase-auth
 import { login } from "../../../store/actions/auth/loginAction";
 //firebase-storage
 import { fileDownload } from "../../../firebase/fileDowload";
 //redux
 import { useDispatch } from "react-redux";
-import store from "../../../store";
 
 const Login = () => {
-  const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [state, setState] = useState({
-    activo: false,
-    error: "",
-    loading: false,
-    user: {
-      email: "",
-      uid: "",
-    },
-  });
   const [datos, setDatos] = useState({
     email: "",
     password: "",
@@ -39,18 +28,7 @@ const Login = () => {
     dispatch(login(datos.email, datos.password));
   };
 
-  store.subscribe(updateData);
-  function updateData() {
-    setState(store.getState().authSlice);
-    redirect();
-  }
-
-  function redirect() {
-    if (state.activo === true) {
-      navigate("/");
-    } else {
-    }
-  }
+  
 
   function setImg(imgID, url) {
     fileDownload(url)
@@ -73,7 +51,7 @@ const Login = () => {
           <img src="" id="icon-card" className="icon-card" alt="Icon account" />
         </div>
         <div className="card-body">
-          {state.error && <p className="error">{state.error}</p>}
+         
           <form className="container__form">
             <input
               className="form__input"
