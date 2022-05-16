@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
 
 // styles
@@ -41,7 +41,7 @@ function App() {
     } else {
     }
   }
-   return (
+  return (
     <div>
       <NavBar />
       <Routes>
