@@ -1,16 +1,21 @@
 //react
 import React, { useState } from "react";
 //react-router-dom
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 //firebase-auth
 import { login } from "../../../store/actions/auth/loginAction";
 //firebase-storage
 import { fileDownload } from "../../../firebase/fileDowload";
 //redux
 import { useDispatch } from "react-redux";
+import store from "../../../store"; 
 
 const Login = () => {
+  const navigate = useNavigate()
   const dispatch = useDispatch();
+  const [userState, setUserState] = useState(false)
+
+  const [error, setError] = useState(" ");
   const [datos, setDatos] = useState({
     email: "",
     password: "",
@@ -26,10 +31,17 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(login(datos.email, datos.password));
-  };
-
-  
-
+    
+  }; 
+store.subscribe(arrow)
+ function arrow () {
+   setUserState(store.getState().authSlice.activo)
+   if (!userState) {
+     navigate("/")
+   } else {
+     setError("Validacion incorrecta")
+   }
+ }
   function setImg(imgID, url) {
     fileDownload(url)
       .then((res) => {
@@ -51,7 +63,7 @@ const Login = () => {
           <img src="" id="icon-card" className="icon-card" alt="Icon account" />
         </div>
         <div className="card-body">
-         
+        {error && <p className="error">{error}</p>}
           <form className="container__form">
             <input
               className="form__input"

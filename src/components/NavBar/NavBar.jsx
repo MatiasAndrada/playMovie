@@ -1,12 +1,14 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 // react-bootstrap
-import { Dropdown } from "react-bootstrap";
-import Navbar from "react-bootstrap/Navbar";
+import { Dropdown, Navbar } from "react-bootstrap";
+
 import { useNavigate } from "react-router-dom";
 // redux
 import store from "../../store";
 import { fileDownload } from "../../firebase/fileDowload";
-import { logOutActions } from "../../store/actions/auth/logOutActions";
+import { auth } from "../../firebase/config";
+/* import { logOutActions } from "../../store/actions/auth/logOutActions"; */
+import { stateUser } from "../../store/actions/auth/stateUserAction";
 import Search from "./Search";
 
 const NavBar = () => {
@@ -20,15 +22,22 @@ const NavBar = () => {
       uid: "",
     },
   });
+  console.log("🚀 ~ file: NavBar.jsx ~ line 15 ~ NavBar ~ state", state)
   store.subscribe(updateData);
   function updateData() {
     setState(store.getState().authSlice);
+    if(!state.activo) {
+      setImg("account-icon", "img/icons/user-accepted.png")
+    }else{
+
+    }
   }
-  console.log("🚀 ~ file: NavBar.jsx ~ line 15 ~ NavBar ~ state", state)
   
-  
+  function stateUserFN(){
+    stateUser()
+  } 
   function logOut() {
-    logOutActions();
+    auth.signOut()
   }
   function iniciarSesion() {
     navigate("/Login");
@@ -73,15 +82,18 @@ const NavBar = () => {
           </Dropdown.Toggle>
 
           <Dropdown.Menu className="dropDownMenu">
-            {state.activo && <Dropdown.Item onClick={logOut} className="dropDownItem">
+            {/* {state.activo && */} <Dropdown.Item onClick={logOut} className="dropDownItem">
               Log Out
-            </Dropdown.Item>}
+            </Dropdown.Item>
             <Dropdown.Item onClick={iniciarSesion} className="dropDownItem">
               Iniciar Sesion
             </Dropdown.Item>
             <Dropdown.Item onClick={crearUsuario} className="dropDownItem">
               Crear Usuario
             </Dropdown.Item>
+             <Dropdown.Item onClick={stateUserFN} className="dropDownItem">
+              ESTADO
+            </Dropdown.Item>  
           </Dropdown.Menu>
         </Dropdown>
       </Navbar>

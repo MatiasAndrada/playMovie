@@ -13,7 +13,6 @@ import store from "../../../store";
 const SignUp = () => {
   const dispatch = useDispatch();
   const [error, setError] = useState(" ");
-
   const [datos, setDatos] = useState({
     email: "",
     password: "",

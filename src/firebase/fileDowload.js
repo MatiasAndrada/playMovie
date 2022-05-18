@@ -26,7 +26,10 @@ export const fileDownload = async (fileName) => {
             case "storage/unknown":
               err = "Unknown error occurred, inspect the server response";
               break;
+            default:
+              err = "Error undefined" 
           }
+
         reject(err);
         });
     });
