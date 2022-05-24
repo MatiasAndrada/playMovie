@@ -1,22 +1,20 @@
 import React, { useState, useEffect } from "react";
 import Modal from "react-bootstrap/Modal";
-import { newMovieFav } from "../../../store/actions/database/setFavoriteList";
+import { addFavouriteMovie } from "../../../store/actions/firestore/addFavouriteMovie";
 /* import ItemCount from "../../ItemCount/ItemCount"; */
 import store from "../../../store";
-import DetailIcon from "./DetailIcon";
+import DetailIcon from "./Icons/DetailIcon";
+import favoriteIcon from "./Icons/favouriteIcon";
+
 
 const MovieDetail = () => {
   const [detail, setDetail] = useState([]);
   const [show, setShow] = useState(false);
 
-  function addFavorite(){
-    console.log("btn")
-    const data = {
-    ID: detail.imdbID,
-    Title: detail.Title,
-    Poster: detail.Poster,
-    }
-    newMovieFav(data)
+  function addFavourite(){
+    const Title = detail.Title;
+    const Poster = detail.Poster;
+    addFavouriteMovie(Title, Poster)
   }
   useEffect(() => {
     const update = () => {
@@ -43,7 +41,9 @@ const MovieDetail = () => {
           <img className="body__poster" alt="poster" src={detail.Poster}></img>
           <div className="body__text">
             <h2 className="text__title">{detail.Title}</h2>
-            <button className="body__button--favorite" onClick={addFavorite}>Fav</button>
+            <button className="body__button--favorite" onClick={addFavourite}>
+              <favoriteIcon width/>
+            </button>
             <div className="box__description">
               <p className="text__description">{detail.Plot}</p>
             </div>

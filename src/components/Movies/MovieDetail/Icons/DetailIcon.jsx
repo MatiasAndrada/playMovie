@@ -1,10 +1,10 @@
 
 import React from 'react';
-import { GenreSVG } from '../../../assets/svg/iconsdetail/genre';
-import { LanguageSVG } from '../../../assets/svg/iconsdetail/language';
-import { RuntimeSVG } from '../../../assets/svg/iconsdetail/clock_hour';
-import { ActorsSVG } from '../../../assets/svg/iconsdetail/actors';
-import { DirectorSVG } from '../../../assets/svg/iconsdetail/director';
+import { GenreSVG } from '../../../../assets/svg/iconsdetail/genre';
+import { LanguageSVG } from '../../../../assets/svg/iconsdetail/language';
+import { RuntimeSVG } from '../../../../assets/svg/iconsdetail/clock_hour';
+import { ActorsSVG } from '../../../../assets/svg/iconsdetail/actors';
+import { DirectorSVG } from '../../../../assets/svg/iconsdetail/director';
 
 const DetailIcon = (data) => {
   return (

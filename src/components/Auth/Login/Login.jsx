@@ -11,10 +11,9 @@ import { useDispatch } from "react-redux";
 import store from "../../../store"; 
 
 const Login = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [userState, setUserState] = useState(false)
-
+  const [userState, setUserState] = useState(false);
   const [error, setError] = useState(" ");
   const [datos, setDatos] = useState({
     email: "",
@@ -33,9 +32,10 @@ const Login = () => {
     dispatch(login(datos.email, datos.password));
     
   }; 
-store.subscribe(arrow)
- function arrow () {
-   setUserState(store.getState().authSlice.activo)
+store.subscribe(updateData)
+ function updateData () {
+   setError(store.getState().authSlice.error);
+   setUserState(store.getState().authSlice.activo);
    if (!userState) {
      navigate("/")
    } else {
@@ -52,7 +52,6 @@ store.subscribe(arrow)
         console.log(err);
       });
   }
-
   setImg("bg-img", "img/bg/Login.png");
   setImg("icon-card", "img/icons/Login.png");
   return (

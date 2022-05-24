@@ -18,6 +18,6 @@ export const login = (email, password) => async (dispatch) =>{
   } catch (err) {
       dispatch(
     setUserError(err.code))
-    console.log(err);
+    console.log(err.code);
   }
 }

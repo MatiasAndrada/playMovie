@@ -29,11 +29,11 @@ export const authSlice = createSlice({
         user: action.payload,
       };
     },
-    setUserLogOut: (state)=>{
+    setUserLogOut: (state, action)=>{
       return{
         ...state,
         loading: false,
-        activo: false,
+        activo: action.payload,
         error: "",
         user: {},
       }

@@ -1,7 +1,7 @@
 //react
 import React, { useState } from "react";
 //react-router-dom
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 //firebase-auth
 import { signUp } from "../../../store/actions/auth/signUpActions";
 //firebase-storage
@@ -11,7 +11,9 @@ import { useDispatch } from "react-redux";
 import store from "../../../store";
 
 const SignUp = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [userState, setUserState] = useState(false);
   const [error, setError] = useState(" ");
   const [datos, setDatos] = useState({
     email: "",
@@ -30,6 +32,12 @@ const SignUp = () => {
   store.subscribe(updateData);
   function updateData() {
     setError(store.getState().authSlice.error);
+    setUserState(store.getState().authSlice.activo)
+    if(!userState){
+      navigate("/")
+    }else{
+      setError("validacion incorrecta")
+    }
   }
 
   function setImg(imgID, url) {

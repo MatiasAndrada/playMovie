@@ -8,19 +8,31 @@
     display: flex;
     justify-content: space-between;
     background-color: map-get($colors, A);
-    .dropdown{
-      .dropdownToggle{
+    .dropdownAccount {
+      .dropdownToggle {
         margin-right: 30px;
         background-color: #000;
-        .accountImg {
+        .accountIcon {
           height: 45px;
           filter: invert(100%);
         }
       }
-      
     }
-
+    .dropdownFavouriteList {
+      .dropdownToggle {
+        margin-right: 30px;
+        background-color: #000;
+        .favouriteListIcon {
+          height: 45px;
+          filter: invert(100%);
+        }
+      }
     }
-
-
+  }
+}
+.dropdown-toggle::after{
+  content: none;
+}
+.btn-primary{
+  border: none;
 }
