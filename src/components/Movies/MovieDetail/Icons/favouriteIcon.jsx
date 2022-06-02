@@ -1,10 +1,10 @@
 import React from "react";
-import { favouriteSolidSVG } from "../../../../assets/svg/iconsdetail/favouriteSolid"
+import { favoriteSolidSVG } from "../../../../assets/svg/iconsdetail/favoriteSolid"
 export const favoriteIcon = () =>{
   
     return (
     <div className="box___item">
-      <favouriteSolidSVG className="item__img" width="32px" />
+      <favoriteSolidSVG className="item__img" width="32px" />
     </div>
   );
 };
