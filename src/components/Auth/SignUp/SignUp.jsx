@@ -4,7 +4,6 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 //firebase-auth
 import { signUp } from "../../../store/actions/auth/signUpActions";
-
 //firebase-storage
 import { fileDownload } from "../../../firebase/fileDowload";
 //redux
