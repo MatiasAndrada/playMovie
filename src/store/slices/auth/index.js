@@ -6,7 +6,10 @@ export const authSlice = createSlice({
     loading: false,
     activo: false,
     error: "",
-    user: {},
+    user: {
+      email: "",
+      uid: ""
+    },
   },
   reducers: {
     loading: (state, action) => {

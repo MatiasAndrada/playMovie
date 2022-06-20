@@ -27,7 +27,7 @@ export const fileDownload = async (fileName) => {
               err = "Unknown error occurred, inspect the server response";
               break;
             default:
-              err = "Error undefined" 
+              err = err.message
           }
 
         reject(err);

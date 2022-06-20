@@ -1,32 +1,38 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Modal from "react-bootstrap/Modal";
-import { addFavouriteMovie } from "../../../store/actions/firestore/addFavouriteMovie";
-/* import ItemCount from "../../ItemCount/ItemCount"; */
+/* import { favoriteRegularSVG } from "../../../assets/svg/iconsdetail/favoriteRegular";
+import { favoriteSolidSVG } from "../../../assets/svg/iconsdetail/favoriteSolid"; */
+//react-redux
+import { useDispatch } from "react-redux" 
 import store from "../../../store";
+import { addFavoriteMovie }  from "../../../store/actions/firestore/addFavoriteMovie";
+
 import DetailIcon from "./Icons/DetailIcon";
-import favoriteIcon from "./Icons/favouriteIcon";
+
+
 
 
 const MovieDetail = () => {
+  const dispatch = useDispatch()
   const [detail, setDetail] = useState([]);
   const [show, setShow] = useState(false);
 
-  function addFavourite(){
+  function addFavorite() {
+    console.log("btn")
     const Title = detail.Title;
     const Poster = detail.Poster;
-    addFavouriteMovie(Title, Poster)
+    dispatch(addFavoriteMovie(Title, Poster));
   }
-  useEffect(() => {
-    const update = () => {
-      const stateStore = store.getState().movieSlice.listMovieDetail;
-      if (stateStore.length !== 0) {
-        setDetail(stateStore);
-        setShow(true);
-      } else {
-      }
-    };
-    store.subscribe(update);
-  });
+
+
+    
+    function stateChange() {
+      const statelistMovie = store.getState().movieSlice.listMovieDetail;
+      setDetail(statelistMovie)
+      setShow(true)
+    }
+    store.subscribe(stateChange);
+
 
   return (
     <>
@@ -41,8 +47,8 @@ const MovieDetail = () => {
           <img className="body__poster" alt="poster" src={detail.Poster}></img>
           <div className="body__text">
             <h2 className="text__title">{detail.Title}</h2>
-            <button className="body__button--favorite" onClick={addFavourite}>
-              <favoriteIcon width/>
+            <button className="body__button--favorite" onClick={addFavorite}>
+            Anadir a favoritos
             </button>
             <div className="box__description">
               <p className="text__description">{detail.Plot}</p>
@@ -54,7 +60,7 @@ const MovieDetail = () => {
               Actors={detail.Actors}
               Director={detail.Director}
             />
-          {/* <div className="ec-stars">
+            {/* <div className="ec-stars">
             <a data-value="1" title="Votar con 1 estrellas">
               &#9733;
             </a>

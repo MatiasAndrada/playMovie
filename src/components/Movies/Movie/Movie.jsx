@@ -8,7 +8,6 @@ const Movie = (data) => {
   const onClick = (e) => {
     const id = e.target.value;
     dispatch(fetchMovieDetail(id));
-    console.log("btn");
   };
 
   return (

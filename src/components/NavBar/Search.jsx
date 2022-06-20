@@ -11,7 +11,7 @@ const Search = () => {
   const onSubmit = (e) => {
 		e.preventDefault();
     dispatch(fetchAllMovies(value))
-    navigate('/movieList')
+    navigate("/user/movieList")
 		}
   return (
     <div className="col-md-4">
@@ -19,7 +19,7 @@ const Search = () => {
         <input
           type="text"
           className="form-control"
-          placeholder="Busqueda"
+          placeholder="Search"
           onChange={(e) => setValue(e.target.value)}
           autoFocus
         />

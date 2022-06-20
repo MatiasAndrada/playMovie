@@ -6,8 +6,9 @@ import { useNavigate } from "react-router-dom";
 // redux
 import store from "../../store";
 import { useDispatch } from "react-redux";
-import { stateUser } from "../../store/actions/auth/stateUserAction";
 import { setUserLogOut } from "../../store/slices/auth";
+import { readFavoriteMovie } from "../../store/actions/firestore/readFavoriteMovie";
+import { isLogged } from "../../store/actions/auth/isLogged";
 // firebase
 import { fileDownload } from "../../firebase/fileDowload";
 import { auth } from "../../firebase/config";
@@ -25,19 +26,16 @@ const NavBar = () => {
       uid: "",
     },
   });
-  console.log("🚀 ~ file: NavBar.jsx ~ line 15 ~ NavBar ~ state", state);
   store.subscribe(updateData);
   function updateData() {
     setState(store.getState().authSlice);
-    if (!state.activo) {
+    const stateUser= isLogged()
+    if (stateUser === true) {
       setImg("account-icon", "img/icons/user-accepted.png");
-    } else {
-    }
+    } 
   }
 
-  function stateUserFN() {
-    stateUser();
-  }
+
   function logOut() {
     console.log("logOut");
     try {
@@ -48,10 +46,13 @@ const NavBar = () => {
     }
   }
   function iniciarSesion() {
-    navigate("/Login");
+    navigate("/public/signIn");/*  */
   }
   function crearUsuario() {
-    navigate("/Register");
+    navigate("/public/register");
+  }
+  function readListfavorite(){
+    readFavoriteMovie(state.user.id)
   }
   function setImg(imgID, url) {
     fileDownload(url)
@@ -59,17 +60,18 @@ const NavBar = () => {
         const img = document.getElementById(imgID);
         img.src = res;
       })
-      .catch((err) => {
-        console.log(err);
+      .catch((error) => {
+        console.log(error)
       });
   }
   setImg("header-img", "img/icons/Header.png");
-  setImg("account-icon", "img/icons/Login.png");
-  setImg("favourite-list-icon", "img/icons/favourite-list.png");
+  setImg("account-icon", "img/icons/SignIn.png");
+  setImg("favorite-list-icon", "img/icons/favorite-list.png");
   return (
     <div className="cover-space">
       <Navbar className="container__navbar ">
-        <Navbar.Brand href="/">
+        <Navbar.Brand>
+          <div onClick={() => navigate("/")}>
           <img
             src=""
             width="150"
@@ -78,20 +80,21 @@ const NavBar = () => {
             alt="React Bootstrap logo"
             id="header-img"
           />
+          </div>
         </Navbar.Brand>
         <Search />
-        <Dropdown className="dropdownFavouriteList">
+        <Dropdown className="dropdownfavoriteList">
           <Dropdown.Toggle id="dropdown-basic" className="dropdownToggle">
             <img
-              id="favourite-list-icon"
+              id="favorite-list-icon"
               src=""
-              alt="icon favourite list"
-              className="favouriteListIcon"
+              alt="icon favorite list"
+              className="favoriteListIcon"
             />
           </Dropdown.Toggle>
           <Dropdown.Menu className="dropDownMenu">
-            <Dropdown.Item onClick={stateUserFN} className="dropDownItem">
-              ESTADO
+            <Dropdown.Item onClick={readListfavorite} className="dropDownItem">
+              Read firebase
             </Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
@@ -117,9 +120,6 @@ const NavBar = () => {
             </Dropdown.Item>
             <Dropdown.Item onClick={crearUsuario} className="dropdownItem">
               Crear Usuario
-            </Dropdown.Item>
-            <Dropdown.Item onClick={stateUserFN} className="dropdownItem">
-              ESTADO
             </Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
