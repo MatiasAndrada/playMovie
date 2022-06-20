@@ -5,14 +5,10 @@ import { setMovieFav } from "../../slices/movie/";
 
 
 
-export const readFavoriteMovie  = async (dispatch) =>{
+export const readFavoriteMovie  =  (dispatch) =>{
    const idUser = store.getState().authSlice.user.uid
-   try{
-   await onSnapshot(doc( db,  "moviesFav", idUser), (doc) =>{ 
-      dispatch(setMovieFav(doc.data())) 
-      console.log(doc.data())
+    onSnapshot(doc( db,  "userData", idUser), (doc) =>{ 
+      const arrayMovies = doc.data().userMoviesFav
+      dispatch(setMovieFav(arrayMovies)) 
    })
-   } catch (err){
-console.log(err)
-   }
 }

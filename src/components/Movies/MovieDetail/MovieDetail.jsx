@@ -3,12 +3,10 @@ import Modal from "react-bootstrap/Modal";
 import DetailIcon from "./Icons/DetailIcon";
 //react-redux
 import store from "../../../store";
-import { useDispatch } from "react-redux";
 import { addFavoriteMovie } from "../../../store/actions/firestore/addFavoriteMovie";
 //firebase
 import { fileDownload } from "../../../firebase/fileDowload";
 const MovieDetail = () => {
-  const dispatch = useDispatch();
   const [detail, setDetail] = useState([]);
   const [show, setShow] = useState(false);
 
@@ -16,7 +14,7 @@ const MovieDetail = () => {
     const Title = detail.Title;
     const Poster = detail.Poster;
     const key = detail.imdbID
-    dispatch(addFavoriteMovie(Title, Poster, key));
+    addFavoriteMovie(Title, Poster, key);
   }
 
   function stateChange() {
