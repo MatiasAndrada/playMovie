@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import { useDispatch } from "react-redux";
-import { fetchAllMovies } from "../../store/actions/fetchMovies";
+import { fetchAllMovies } from "../../store/actions/movie/movies";
 import { useNavigate } from "react-router-dom";
 
 const Search = () => {
@@ -11,7 +11,7 @@ const Search = () => {
   const onSubmit = (e) => {
 		e.preventDefault();
     dispatch(fetchAllMovies(value))
-    navigate("/user/movieList")
+    navigate("/movieList")
 		}
   return (
     <div className="col-md-4">

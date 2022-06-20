@@ -2,14 +2,16 @@
 @import 'variables.scss';
 //App
 @import "../components/Home/Home.scss";
+//Navbar
 @import "../components/NavBar/NavBar.scss";
+@import "../components/Favorite/FavoriteCard.scss";
 //Auth
 @import "../components/Auth/SignIn/SignIn.scss";
-@import "../components/Auth/signIn/signIn.scss";
+@import "../components/Auth/signUp/signUp.scss";
 //Movie
 @import "../components/Movies/MovieDetail/MovieDetail.scss";
 @import"../components/Movies/MovieList/MovieList.scss";
-@import"../components/Movies/Movie/Movie.scss";
+@import"../components/Movies/MovieList/Movie/Movie.scss";
 
 body{
     background-color: black;

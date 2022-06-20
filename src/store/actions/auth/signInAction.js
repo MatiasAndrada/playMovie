@@ -8,6 +8,7 @@ export const signIn = (email, password) => async (dispatch) =>{
   try {
     setPersistence(auth, browserSessionPersistence)
     const res = await signInWithEmailAndPassword(auth, email, password);
+    console.log("🦇 ~ file: signInAction.js ~ line 11 ~ signIn ~ res", res)
     const userCurrent = {
         email: res.user.email,
         uid: res.user.uid,

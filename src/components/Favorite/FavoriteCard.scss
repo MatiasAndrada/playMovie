@@ -1,0 +1,48 @@
+@import "../../styles/variables.scss";
+
+.dropDownMenu {
+  background-color: map-get($colors, C);
+  border-radius: map-get($b-radius, 1);
+  .dropDownItem {
+    text-align: center;
+    
+    .moviesFavList {
+      padding: 0;
+      position: relative;
+      .card {
+        width: 420;
+        height: 72px;
+        margin: 0;
+        margin-top: 12px;
+        margin-bottom: 12px;
+        border-radius: 0;
+        background-color: map-get($colors, B);
+        border-radius: map-get($b-radius, 1);
+        display: flex;
+        flex-direction: row;
+        outline: none;
+        .card__img {
+          height: 84px;
+        }
+        .card__box {
+          display: flex;
+          align-items: center;
+          justify-content: space-evenly;
+          width: 80%;
+          height: 100%;
+          .box__text {
+            font-family: "Cairo", sans-serif;
+            text-align: center;
+            font-size: 14px;
+            color: white;
+          }
+          .box__btn--delete{
+
+            margin: 5px;
+            width: 24px;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,9 +1,8 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { fetchMovieDetail } from "../../../store/actions/fetchMovieDetail";
+import { fetchMovieDetail } from "../../../../store/actions/movie/movieDetail";
 
 const Movie = (data) => {
-  //const navigate = useNavigate();
   const dispatch = useDispatch();
   const onClick = (e) => {
     const id = e.target.value;
@@ -20,8 +19,9 @@ const Movie = (data) => {
         variant="outline-success"
         value={data.imdbID}
         onClick={(e) => onClick(e)}
-      >Ver detalles
-      </button>  
+      >
+        Ver detalles
+      </button>
     </div>
   );
 };

@@ -1,9 +1,10 @@
 //react
 import React, { useState } from "react";
 //react-router-dom
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 //firebase-auth
 import { signUp } from "../../../store/actions/auth/signUpActions";
+
 //firebase-storage
 import { fileDownload } from "../../../firebase/fileDowload";
 //redux
@@ -11,6 +12,7 @@ import { useDispatch } from "react-redux";
 import store from "../../../store";
 
 const SignUp = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [error, setError] = useState(" ");
   const [datos, setDatos] = useState({
@@ -26,14 +28,17 @@ const SignUp = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(signUp(datos.email, datos.password));
+    const stateUser = store.getState().authSlice.activo;
+    if (stateUser === true) {
+      navigate("/");
+    }
+    const error = store.getState().authSlice.error;
+    if (error !== " ") {
+      setError(store.getState().authSlice.error);
+    }
   };
-  store.subscribe(updateData);
-  function updateData() {
-    setError(store.getState().authSlice.error);
-  }
-
-  function setImg(imgID, url) {
-    fileDownload(url)
+  async function setImg(imgID, url) {
+    await fileDownload(url)
       .then((res) => {
         const img = document.getElementById(imgID);
         img.src = res;
@@ -42,7 +47,6 @@ const SignUp = () => {
         console.log(err);
       });
   }
-
   setImg("bg-img", "img/bg/SignUp.png");
   setImg("icon-card", "img/icons/SignUp.png");
 
@@ -71,7 +75,7 @@ const SignUp = () => {
               onChange={handleInputChange}
             />
             <button className="cta" onClick={handleSubmit} type="submit">
-              <span>Sign in</span>
+              <span>Sign Up</span>
               <svg viewBox="0 0 13 10" height="10px" width="15px">
                 <path d="M1,5 L11,5"></path>
                 <polyline points="8 1 12 5 8 9"></polyline>

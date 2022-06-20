@@ -1,7 +1,6 @@
 @import "/src/styles/variables.scss";
 
-.cover-space {
-  height: 100px;
+
   .container__navbar {
     position: fixed;
     width: 100%;
@@ -10,16 +9,23 @@
     background-color: map-get($colors, A);
     .dropdownAccount {
       .dropdownToggle {
-        margin-right: 30px;
         background-color: #000;
         .accountIcon {
           height: 45px;
           filter: invert(100%);
         }
       }
+      .dropDownMenuAccount{
+        background-color: map-get($colors, A);
+        .dropdownItem{
+          color: white;
+        }
+      }
     }
     .dropdownfavoriteList {
       .dropdownToggle {
+
+
         margin-right: 30px;
         background-color: #000;
         .favoriteListIcon {
@@ -29,6 +35,10 @@
       }
     }
   }
+
+.dropdown-item{
+  
+  white-space: normal;
 }
 .dropdown-toggle::after{
   content: none;

@@ -21,6 +21,7 @@ export const authSlice = createSlice({
         loading: false,
         activo: false,
         error: action.payload,
+        user: {}
       }
     },
     setUserSuccess: (state, action) => {

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { setMovieList, setLoading } from "../slices/movie";
+import { setMovieList, setLoading } from "../../slices/movie";
 
 export const fetchAllMovies = (TERM) => async (dispatch) => {
   setLoading(true);

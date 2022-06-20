@@ -15,7 +15,7 @@ export const movieSlice = createSlice({
     setMovieDetail: (state, action) => {
       state.listMovieDetail = action.payload;
     },
-    setMovieFav:(state, action ) => {
+    setMovieFav:(state, action) => {
       state.listMoviesFav = action.payload;
     },
     setLoading: (state, action) =>{

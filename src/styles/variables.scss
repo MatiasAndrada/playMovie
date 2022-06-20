@@ -1,8 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300&display=swap');
 @function shadow($color) {
-    @return 0 0 7px #fff,
-    0 0 10px #fff,
-    0 0 21px #fff,
-    0 0 42px $color,
+    @return 0 0 4px #fff,
+    0 0 7px $color,
+    0 0 13px #fff,
+    0 0 38px $color,
     0 0 82px $color,
     0 0 92px $color,
     0 0 102px $color,
@@ -23,7 +24,7 @@ $colors: (
     E: #74a2a4,
     );
 $b-radius: (
-    1: 12px,
+    1: 10px,
     2: 24px,
     3: 32px,   
 );

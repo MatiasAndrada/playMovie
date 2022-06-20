@@ -1,38 +1,42 @@
 import React, { useState } from "react";
 import Modal from "react-bootstrap/Modal";
-/* import { favoriteRegularSVG } from "../../../assets/svg/iconsdetail/favoriteRegular";
-import { favoriteSolidSVG } from "../../../assets/svg/iconsdetail/favoriteSolid"; */
-//react-redux
-import { useDispatch } from "react-redux" 
-import store from "../../../store";
-import { addFavoriteMovie }  from "../../../store/actions/firestore/addFavoriteMovie";
-
 import DetailIcon from "./Icons/DetailIcon";
-
-
-
-
+//react-redux
+import store from "../../../store";
+import { useDispatch } from "react-redux";
+import { addFavoriteMovie } from "../../../store/actions/firestore/addFavoriteMovie";
+//firebase
+import { fileDownload } from "../../../firebase/fileDowload";
 const MovieDetail = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const [detail, setDetail] = useState([]);
   const [show, setShow] = useState(false);
 
   function addFavorite() {
-    console.log("btn")
     const Title = detail.Title;
     const Poster = detail.Poster;
-    dispatch(addFavoriteMovie(Title, Poster));
+    const key = detail.imdbID
+    dispatch(addFavoriteMovie(Title, Poster, key));
   }
 
-
-    
-    function stateChange() {
-      const statelistMovie = store.getState().movieSlice.listMovieDetail;
-      setDetail(statelistMovie)
-      setShow(true)
-    }
-    store.subscribe(stateChange);
-
+  function stateChange() {
+    const statelistMovie = store.getState().movieSlice.listMovieDetail;
+    setDetail(statelistMovie);
+    setShow(true);
+  }
+  store.subscribe(stateChange);
+  
+  async function setImg(imgID, url) {
+    await fileDownload(url)
+       .then((res) => {
+         const img = document.getElementById(imgID);
+         img.src = res;
+       })
+       .catch((error) => {
+         console.log(error)
+       });
+   }
+setImg("fav-regular-icon", "img/icons/fav-regular.png");
 
   return (
     <>
@@ -47,9 +51,12 @@ const MovieDetail = () => {
           <img className="body__poster" alt="poster" src={detail.Poster}></img>
           <div className="body__text">
             <h2 className="text__title">{detail.Title}</h2>
-            <button className="body__button--favorite" onClick={addFavorite}>
-            Anadir a favoritos
-            </button>
+            <div className="box__favorite" onClick={addFavorite}>
+              <img src="" width="48" height="auto" id="fav-regular-icon" alt="favorite Icon"/>
+            </div>
+            {/* <button className="body__button--favorite" onClick={addFavorite}>
+              Anadir a favoritos
+            </button> */}
             <div className="box__description">
               <p className="text__description">{detail.Plot}</p>
             </div>

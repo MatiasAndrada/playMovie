@@ -1,20 +1,23 @@
 @import "../../styles/variables.scss";
 
-.container__bg{
-    .bg__text{
-        height: auto;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translateX(-50%) translateY(-50%);
-        text-align: center;
-        color: $textcolor;
-        font-size: map-get($headings, h1);
-        text-shadow: shadow(map-get($colors, B));
-    }
-    .container__bg--url{
-        z-index: -1;
-        height: 100vh;
-        background: url(../../assets/svg/Bg/bgSVG.svg);
-    }
+.container__bg {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  .bg__text {
+    text-align: center;
+    color: $textcolor;
+    font-family: "Vermin Vibes";
+    font-size: 92px;
+    text-shadow: shadow(map-get($colors, B));
+  }
+  .container__bg--url {
+    position: fixed;
+    z-index: -10;
+    width: 100%;
+    height: 100vh;
+    background: url(../../assets/svg/Bg/bgSVG.svg);
+  }
 }

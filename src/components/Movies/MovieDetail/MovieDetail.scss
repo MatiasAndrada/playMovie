@@ -2,9 +2,10 @@
 
 .modal__container {
   border-radius: map-get($b-radius, 1);
+  position: relative;
   .modal__body {
     display: flex;
-    background-color: map-get($colors, A);
+    background-color: map-get($colors, D);
     .body__poster {
       height: 400px;
       border-radius: map-get($b-radius, 2);
@@ -18,17 +19,11 @@
         font-size: map-get($headings, h3);
         text-shadow: shadow(map-get($colors, D));
       }
-      .body__button--favorite{
-        width: 32x;
-        height: 24px;
-        background-color: map-get($colors, C);
-        border-radius: map-get($b-radius, 1);
-      }
       .box__description {
         margin-top: 2em;
         margin-left: 4em;
-        background-color: map-get($colors, D);
-        border-radius: map-get($b-radius, 1); 
+        background-color: map-get($colors, C);
+        border-radius: map-get($b-radius, 1);
         .text__description {
           text-align: right;
           font-size: map-get($headings, h4);
@@ -49,13 +44,13 @@
         .item__text {
           position: relative;
           float: right;
-          text-align: end;
+          margin: 8px;
           color: $textcolor;
           font-size: map-get($headings, h4);
         }
       }
     }
-    .ec-stars{
+    .ec-stars {
       font-size: 32px;
       color: $textcolor;
       bottom: 5px;

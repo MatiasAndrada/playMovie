@@ -1,16 +1,18 @@
 //react
 import React, { useState } from "react";
 //react-router-dom
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 //firebase-auth
 import { signIn } from "../../../store/actions/auth/signInAction";
+
 //firebase-storage
 import { fileDownload } from "../../../firebase/fileDowload";
 //redux
 import { useDispatch } from "react-redux";
-import store from "../../../store"; 
+import store from "../../../store";
 
 const SignIn = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [error, setError] = useState(" ");
   const [datos, setDatos] = useState({
@@ -28,15 +30,17 @@ const SignIn = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(signIn(datos.email, datos.password));
-    
-  }; 
-
-store.subscribe(updateData)
- function updateData () {
-   setError(store.getState().authSlice.error);
- }
-  function setImg(imgID, url) {
-    fileDownload(url)
+    const stateUser = store.getState().authSlice.activo;
+    if (stateUser === true) {
+      navigate("/");
+    }
+    const error = store.getState().authSlice.error;
+    if (error !== " ") {
+      setError(store.getState().authSlice.error);
+    }
+  };
+  async function setImg(imgID, url) {
+    await fileDownload(url)
       .then((res) => {
         const img = document.getElementById(imgID);
         img.src = res;
@@ -55,7 +59,7 @@ store.subscribe(updateData)
           <img src="" id="icon-card" className="icon-card" alt="Icon account" />
         </div>
         <div className="card-body">
-        {error && <p className="error">{error}</p>}
+          {error && <p className="error">{error}</p>}
           <form className="container__form">
             <input
               className="form__input"

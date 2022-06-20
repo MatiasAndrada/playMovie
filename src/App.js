@@ -1,18 +1,19 @@
 import React from "react";
-import { Routes, Route } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 
 // styles
 import "./styles/App.scss";
 // router
-import { PublicRouter } from "./components/Router/fn/publicRouter"
-import { PrivateRouter } from "./components/Router/fn/privateRouter"
-import { PublicRoutes } from "./components/Router/routes/PublicRoutes"
-import { PrivateRoutes } from "./components/Router/routes/PrivateRoutes"
+import { PrivateRoute } from "./components/router/privateRoute";
 // components
 import NavBar from "./components/NavBar/NavBar";
 import Home from "./components/Home/Home";
-import MovieDetail from "./components/Movies/MovieDetail/MovieDetail";
-
+import MovieList from "./components/Movies/MovieList/MovieList";
+/* import MovieDetail from "./components/Movies/MovieDetail/MovieDetail" */
+import SignIn from "./components/Auth/SignIn/SignIn";
+import SignUp from "./components/Auth/SignUp/SignUp";
+/* import Contact from "./components/Contact/Contact"
+import MyAccount from "./components/MyAccount/MyAccount" */
 
 function App() {
   return (
@@ -20,24 +21,17 @@ function App() {
       <NavBar />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/signIn" element={<SignIn/>}/>
+        <Route path="/signUp" element={<SignUp />} />
         <Route
-        path="/public/"
+          path="/movieList"
           element={
-            <PublicRouter>                
-              <PublicRoutes/>
-            </PublicRouter>
-          }
-        />
-        <Route
-        path="/user/"
-          element={
-            <PrivateRouter>
-             <PrivateRoutes/>
-            </PrivateRouter>
+            <PrivateRoute>
+              <MovieList />
+            </PrivateRoute>
           }
         />
       </Routes>
-      <MovieDetail />
     </div>
   );
 }
