@@ -3,7 +3,8 @@ import { arrayUnion, doc, updateDoc } from "firebase/firestore";
 /* import { arrayUnion, doc, setDoc } from "firebase/firestore"; */
 import store from "../../";
 
-export  function addFavoriteMovie(Title, Poster, key) {
+export function addFavoriteMovie(Title, Poster, key) {
+  console.log("0")
   const idUser = store.getState().authSlice.user.uid;
   const data = {
     Title: Title,
