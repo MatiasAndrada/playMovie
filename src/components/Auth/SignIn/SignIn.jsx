@@ -1,15 +1,14 @@
 //react
-import React, { useState } from "react";
+import React, { useState, useNavigate } from "react";
 //react-router-dom
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 //firebase-auth
 import { signIn } from "../../../store/actions/auth/signInAction";
-
 //firebase-storage
 import { fileDownload } from "../../../firebase/fileDowload";
 //redux
 import { useDispatch } from "react-redux";
-import store from "../../../store";
+import store from "../../../store"; 
 
 const SignIn = () => {
   const navigate = useNavigate();
