@@ -1,115 +1,91 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+//component
 import Modal from "react-bootstrap/Modal";
-<<<<<<< HEAD
 import DetailIcon from "./Icons/DetailIcon";
-//react-redux
+//redux
 import store from "../../../store";
-import { addFavoriteMovie } from "../../../store/actions/firestore/addFavoriteMovie";
+import { useDispatch } from "react-redux";
+import { setMovieDetail } from "../../../store/slices/movie";
+import { writeFavoriteMovie } from "../../../store/actions/firestore/writeFavoriteMovie.js";
 //firebase
 import { fileDownload } from "../../../firebase/fileDowload";
 const MovieDetail = () => {
-<<<<<<< HEAD
-=======
   const dispatch = useDispatch();
-=======
-/* import { favoriteRegularSVG } from "../../../assets/svg/iconsdetail/favoriteRegular";
-import { favoriteSolidSVG } from "../../../assets/svg/iconsdetail/favoriteSolid"; */
-//react-redux
-import { useDispatch } from "react-redux" 
-import store from "../../../store";
-import { addFavoriteMovie }  from "../../../store/actions/firestore/addFavoriteMovie";
-
-import DetailIcon from "./Icons/DetailIcon";
-
-
-
-
-const MovieDetail = () => {
-  const dispatch = useDispatch()
->>>>>>> eae2e56175cc8c8857a2d473de07abc9f1a5516b
->>>>>>> 750e5dc68e21a32f70a97c576d505bf16ba0bb47
-  const [detail, setDetail] = useState([]);
   const [show, setShow] = useState(false);
+  const [userMoviesFav, setUserMoviesFav] = useState([]);
+  const [detail, setDetail] = useState([]);
+  useEffect(() => {
+    setDetail(store.getState().movieSlice.listMovieDetail);
+    store.subscribe(() => {
+      setDetail(store.getState().movieSlice.listMovieDetail);
+      if (detail.length !== 0) {
+        setShow(true);
+      }
+      const moviesFav = store.getState().movieSlice.userMoviesFav;
+      const arrayMoviesID = [];
+      moviesFav.forEach((data) => arrayMoviesID.push(data.movieID));
+      setUserMoviesFav(arrayMoviesID);
+    });
+  }, [detail]);
+  if (userMoviesFav.includes(detail.imdbID) === true) {
+    setImg("fav-icon", "img/icons/fav-solid.png");
+  } else {
+    setImg("fav-icon", "img/icons/fav-regular.png");
+  }
 
+  function emptyDetailArray() {
+    dispatch(setMovieDetail([]));
+    setShow(false);
+  }
   function addFavorite() {
-<<<<<<< HEAD
     const Title = detail.Title;
     const Poster = detail.Poster;
-    const key = detail.imdbID
-    addFavoriteMovie(Title, Poster, key);
+    const key = detail.imdbID;
+    writeFavoriteMovie(Title, Poster, key);
   }
 
-  function stateChange() {
-    const statelistMovie = store.getState().movieSlice.listMovieDetail;
-    setDetail(statelistMovie);
-    setShow(true);
-  }
-  store.subscribe(stateChange);
-  
   async function setImg(imgID, url) {
     await fileDownload(url)
-       .then((res) => {
-         const img = document.getElementById(imgID);
-         img.src = res;
-       })
-       .catch((error) => {
-         console.log(error)
-       });
-   }
-setImg("fav-regular-icon", "img/icons/fav-regular.png");
-=======
-    console.log("btn")
-    const Title = detail.Title;
-    const Poster = detail.Poster;
-    dispatch(addFavoriteMovie(Title, Poster));
+      .then((res) => {
+        const img = document.getElementById(imgID);
+        img.src = res;
+      })
+      .catch((err) => {
+        if (err.name !== "TypeError") {
+          console.log(err);
+        }
+      });
   }
-
-
-    
-    function stateChange() {
-      const statelistMovie = store.getState().movieSlice.listMovieDetail;
-      setDetail(statelistMovie)
-      setShow(true)
-    }
-    store.subscribe(stateChange);
-
->>>>>>> eae2e56175cc8c8857a2d473de07abc9f1a5516b
 
   return (
     <>
       <Modal
         className="modal__container"
-        size="lg"
+        s
+        size="xl"
         show={show}
+        animation={true}
         onHide={() => setShow(false)}
+        onExited={() => emptyDetailArray()}
         aria-labelledby="example-custom-modal-styling-title"
       >
         <Modal.Body className="modal__body">
           <img className="body__poster" alt="poster" src={detail.Poster}></img>
+          <img
+            src=""
+            className="favorite__icon"
+            onClick={() => addFavorite()}
+            id="fav-icon"
+            alt="favorite Icon"
+          />
           <div className="body__text">
-            <h2 className="text__title">{detail.Title}</h2>
-<<<<<<< HEAD
-            <div className="box__favorite" onClick={addFavorite}>
-              <img src="" width="48" height="auto" id="fav-regular-icon" alt="favorite Icon"/>
+            <div className="box__title">
+              <h2 className="text__title">{detail.Title}</h2>
             </div>
-            {/* <button className="body__button--favorite" onClick={addFavorite}>
-              Anadir a favoritos
-            </button> */}
-=======
-            <button className="body__button--favorite" onClick={addFavorite}>
-            Anadir a favoritos
-            </button>
->>>>>>> eae2e56175cc8c8857a2d473de07abc9f1a5516b
+
             <div className="box__description">
               <p className="text__description">{detail.Plot}</p>
             </div>
-            <DetailIcon
-              Genre={detail.Genre}
-              Lenguage={detail.Language}
-              Runtime={detail.Runtime}
-              Actors={detail.Actors}
-              Director={detail.Director}
-            />
             {/* <div className="ec-stars">
             <a data-value="1" title="Votar con 1 estrellas">
               &#9733;
@@ -127,12 +103,15 @@ setImg("fav-regular-icon", "img/icons/fav-regular.png");
               &#9733;
             </a>
           </div> */}
+            <DetailIcon
+              Genre={detail.Genre}
+              Lenguage={detail.Language}
+              Runtime={detail.Runtime}
+              Actors={detail.Actors}
+              Director={detail.Director}
+            />
           </div>
         </Modal.Body>
-        {/* <Modal.Footer>
-          <h2>Footer</h2>
-          <ItemCount />
-        </Modal.Footer> */}
       </Modal>
     </>
   );

@@ -1,4 +1,5 @@
 import { auth } from "../../../firebase/config";
+import { createFavoriteMovie } from "../firestore/createFavoriteMovie.js"
 //firebase
 import {
   createUserWithEmailAndPassword,
@@ -13,17 +14,18 @@ export const signUp = (email, password) => async (dispatch) => {
   createUserWithEmailAndPassword(auth, email, password)
     .then((res) => {
       setPersistence(auth, browserSessionPersistence);
-      console.log("🦇 ~ file: signUpActions.js ~ line 14 ~ signUp ~ res", res);
       const userCurrent = {
         email: res.user.email,
         uid: res.user.uid,
       };
       dispatch(setUserSuccess(userCurrent));
+      createFavoriteMovie()
     })
     .catch((error) => {
+      console.log(error)
       const errorCode = error.code;
       dispatch(setUserError(errorCode));
     });
 };
 
-/* export const useAuth = () => {}; */
+

@@ -3,15 +3,16 @@ import { useDispatch } from "react-redux";
 import { fetchAllMovies } from "../../store/actions/movie/movies";
 import { useNavigate } from "react-router-dom";
 
+
 const Search = () => {
   const navigate = useNavigate();
-  const [value, setValue] = useState("")
   const dispatch = useDispatch();
+  const [value, setValue] = useState("")
   
   const onSubmit = (e) => {
 		e.preventDefault();
     dispatch(fetchAllMovies(value))
-    navigate("/movieList")
+    navigate("/movieList", {  replace: true }) 
 		}
   return (
     <div className="col-md-4">

@@ -1,20 +1,43 @@
-import React, { useState } from "react";
-import store from "../../store";
+import React, { useState, useEffect } from "react";
+import Button from "react-bootstrap/esm/Button";
+
+//component
 import MovieFavorite from "./MovieFavorite";
 
-const FavoriteList = () => {
-  /*   const [loading, setLoading] = useState() */
-  const [state, setState] = useState([]);
-  function stateChange() {
-    setState(store.getState().movieSlice.lisvtMoviesFav);
+//redux
+import store from "../../store";
+import { deleteFavoriteMovie } from "../../store/actions/firestore/deleteFavoriteMovie";
+
+export const FavoriteList = () => {
+  const [favorites, setFavorites] = useState([]);
+  useEffect(() => {
+    setFavorites(store.getState().movieSlice.userMoviesFav);
+    store.subscribe(() => {
+      setFavorites(store.getState().movieSlice.userMoviesFav);
+    });
+  }, [favorites]);
+
+  function deleteMovie() {
+    deleteFavoriteMovie();
   }
-  store.subscribe(stateChange);
   return (
     <div className="moviesFavList">
-      {state.map((data) => (
-        <MovieFavorite Title={data.Title} Poster={data.Poster} key={data.key} />
+      
+      {favorites.map((data) => (
+        <MovieFavorite
+          Title={data.movieData.Title}
+          Poster={data.movieData.Poster}
+          key={data.movieID}
+          movieID={data.movieID}
+        />
       ))}
+      {favorites.length === 0 ? (
+        <h4 className="emptyFavText">No favorites</h4>
+      ) : (
+        <Button onClick={() => deleteMovie()} variant="dark">
+          Eliminar
+        </Button>
+      )}
     </div>
   );
 };
-export default FavoriteList;

@@ -8,12 +8,10 @@ import { PrivateRoute } from "./components/router/privateRoute";
 // components
 import NavBar from "./components/NavBar/NavBar";
 import Home from "./components/Home/Home";
-import MovieList from "./components/Movies/MovieList/MovieList";
-/* import MovieDetail from "./components/Movies/MovieDetail/MovieDetail" */
+import { MovieList } from "./components/Movies/MovieList/MovieList";
 import SignIn from "./components/Auth/SignIn/SignIn";
 import SignUp from "./components/Auth/SignUp/SignUp";
-/* import Contact from "./components/Contact/Contact"
-import MyAccount from "./components/MyAccount/MyAccount" */
+/* import MyAccount from "./components/MyAccount/MyAccount"  */
 
 function App() {
   return (

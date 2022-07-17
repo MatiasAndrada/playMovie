@@ -9,7 +9,7 @@
   .bg__text {
     text-align: center;
     color: $textcolor;
-    font-family: "Vermin Vibes";
+    font-family: $font-title;
     font-size: 92px;
     text-shadow: shadow(map-get($colors, B));
   }

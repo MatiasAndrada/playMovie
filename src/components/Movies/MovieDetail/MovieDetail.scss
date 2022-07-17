@@ -3,29 +3,50 @@
 .modal__container {
   border-radius: map-get($b-radius, 1);
   position: relative;
+
   .modal__body {
     display: flex;
-    background-color: map-get($colors, D);
+    align-items: center;
+    background-color: map-get($colors, B);
+    border-radius: map-get($b-radius, 1);
+
     .body__poster {
       height: 400px;
       border-radius: map-get($b-radius, 2);
-      box-shadow: 0 0 10px rgb(22, 165, 201), 0 0 21px rgb(86, 96, 172);
+      box-shadow: 0 0 10px rgb(201, 22, 22), 0 0 21px rgb(172, 86, 151);
       margin: 12px;
+    }
+    .favorite__icon {
+      align-items: center;
+      width: 48px;
+      height: 48px;
+      margin: 10px;
     }
     .body__text {
       color: map-get($colors, A);
-      .text__title {
-        text-align: center;
-        font-size: map-get($headings, h3);
-        text-shadow: shadow(map-get($colors, D));
+
+      .box__title {
+        background-color: black;
+        border-radius: map-get($b-radius, 3);
+        padding: 10px;
+        .text__title {
+          text-align: center;
+          font-size: map-get($headings, h3);
+          font-family: $font-subtitle;
+          color: $textcolor;
+          text-shadow: shadow(map-get($colors, E));
+        }
       }
+
       .box__description {
         margin-top: 2em;
-        margin-left: 4em;
-        background-color: map-get($colors, C);
+        float: right;
+        background-color: map-get($colors, E);
         border-radius: map-get($b-radius, 1);
+        width: 90%;
         .text__description {
           text-align: right;
+
           font-size: map-get($headings, h4);
           padding: 18px;
         }
@@ -33,13 +54,15 @@
     }
     .container__item {
       display: flex;
+      width: 100%;
       flex-direction: row;
       flex-wrap: wrap;
       align-content: space-between;
       justify-content: center;
-      right: 20px;
+      padding-top: 2em;
+      margin-right: 20px;
       .box__item {
-        align-self: flex-end;
+        align-self: flex-start;
         width: fit-content;
         .item__text {
           position: relative;

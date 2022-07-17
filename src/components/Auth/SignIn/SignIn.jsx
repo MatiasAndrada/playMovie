@@ -1,9 +1,10 @@
 //react
-import React, { useState, useNavigate } from "react";
+import React, { useState, useEffect } from "react";
 //react-router-dom
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 //firebase-auth
 import { signIn } from "../../../store/actions/auth/signInAction";
+
 //firebase-storage
 import { fileDownload } from "../../../firebase/fileDowload";
 //redux
@@ -11,12 +12,27 @@ import { useDispatch } from "react-redux";
 import store from "../../../store"; 
 
 const SignIn = () => {
-  const navigate = useNavigate();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [stateUser, setStateUser] = useState(false);
   const [error, setError] = useState(" ");
   const [datos, setDatos] = useState({
     email: "",
     password: "",
+  });
+  useEffect(() => {
+    store.subscribe(() => {
+      const error = store.getState().authSlice.error;
+      if (error !== " ") {
+        setError(store.getState().authSlice.error);
+      }
+      setStateUser(store.getState().authSlice.activo);
+    });
+    if (stateUser === true) {
+      navigate("/", { replace: true });
+    }
+    setImg("bg-img", "img/bg/SignIn.png");
+    setImg("icon-card", "img/icons/SignIn.png");
   });
 
   function handleInputChange(event) {
@@ -25,19 +41,11 @@ const SignIn = () => {
       [event.target.name]: event.target.value,
     });
   }
-
-  const handleSubmit = (e) => {
+  function handleSubmit(e) {
     e.preventDefault();
     dispatch(signIn(datos.email, datos.password));
-    const stateUser = store.getState().authSlice.activo;
-    if (stateUser === true) {
-      navigate("/");
     }
-    const error = store.getState().authSlice.error;
-    if (error !== " ") {
-      setError(store.getState().authSlice.error);
-    }
-  };
+
   async function setImg(imgID, url) {
     await fileDownload(url)
       .then((res) => {
@@ -45,11 +53,12 @@ const SignIn = () => {
         img.src = res;
       })
       .catch((err) => {
+      if(err.name !== "TypeError"){
         console.log(err);
-      });
   }
-  setImg("bg-img", "img/bg/SignIn.png");
-  setImg("icon-card", "img/icons/SignIn.png");
+    })
+  }
+
   return (
     <div className="container__card">
       <img src="" id="bg-img" className="img-bg" alt="Background SignIn" />

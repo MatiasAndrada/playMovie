@@ -1,9 +1,10 @@
 //react
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 //react-router-dom
 import { Link, useNavigate } from "react-router-dom";
 //firebase-auth
 import { signUp } from "../../../store/actions/auth/signUpActions";
+
 //firebase-storage
 import { fileDownload } from "../../../firebase/fileDowload";
 //redux
@@ -13,11 +14,27 @@ import store from "../../../store";
 const SignUp = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [stateUser, setStateUser] = useState(false);
   const [error, setError] = useState(" ");
   const [datos, setDatos] = useState({
     email: "",
     password: "",
   });
+  useEffect(() => {
+    store.subscribe(() => {
+      const error = store.getState().authSlice.error;
+      if (error !== " ") {
+        setError(store.getState().authSlice.error);
+      }
+      setStateUser(store.getState().authSlice.activo);
+    });
+    if (stateUser === true) {
+      navigate("/", { replace: true });
+    }
+    setImg("bg-img", "img/bg/SignUp.png");
+    setImg("icon-card", "img/icons/SignUp.png");
+  });
+
   function handleInputChange(event) {
     setDatos({
       ...datos,
@@ -27,27 +44,18 @@ const SignUp = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(signUp(datos.email, datos.password));
-    const stateUser = store.getState().authSlice.activo;
-    if (stateUser === true) {
-      navigate("/");
-    }
-    const error = store.getState().authSlice.error;
-    if (error !== " ") {
-      setError(store.getState().authSlice.error);
-    }
   };
   async function setImg(imgID, url) {
-    await fileDownload(url)
-      .then((res) => {
-        const img = document.getElementById(imgID);
-        img.src = res;
-      })
-      .catch((err) => {
+    await fileDownload(url).then((res) => {
+      const img = document.getElementById(imgID);
+      img.src = res;
+    })
+    .catch((err) => {
+      if(err.name !== "TypeError"){
         console.log(err);
-      });
+      }
+    })
   }
-  setImg("bg-img", "img/bg/SignUp.png");
-  setImg("icon-card", "img/icons/SignUp.png");
 
   return (
     <div className="container__card">

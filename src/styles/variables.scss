@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Exo:ital@1&display=swap');
 @function shadow($color) {
     @return 0 0 4px #fff,
     0 0 7px $color,
@@ -18,18 +19,18 @@ $headings: (
     p: 1.1em);
 $colors: (
     A: #0A0908,
-    B: #3B28CC,
-    C: #BE3F23,
-    D: #197ba5,
-    E: #74a2a4,
+    B: #2b1e8d,
+    C: #2380be,
+    D: #1e2e63b5,
+    E: #9a3d1b,
     );
 $b-radius: (
     1: 10px,
     2: 24px,
     3: 32px,   
 );
-$font-tittle: 'Montserrat';
-$font-subtittle: 'Allison';
+$font-title: "Vermin Vibes";
+$font-subtitle: 'Exo';
 $font-paragraph: 'Heebo';
 $textShasowEffect: 1px 1px 2px black, 0 0 1em blue, 0 0 0.2em blue;
 $textcolor: #edf2f4;
