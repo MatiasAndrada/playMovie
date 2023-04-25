@@ -32,7 +32,7 @@ export const FavoriteList = () => {
         />
       ))}
       {favorites.length === 0 ? (
-        <h4 className="emptyFavText">No favorites</h4>
+        <h4 className="emptyFavText">No hay favoritos</h4>
       ) : (
         <Button onClick={() => deleteMovie()} variant="dark">
           Eliminar

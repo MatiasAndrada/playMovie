@@ -40,7 +40,7 @@
         align-items: center;
         .form__input {
           background-color: map-get($colors, B);
-          color: map-get($colors, A);
+          color: $textcolor;
           border-color: map-get($colors, A);
           margin: 4px;
         }
