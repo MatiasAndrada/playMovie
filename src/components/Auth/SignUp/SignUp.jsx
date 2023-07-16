@@ -2,38 +2,28 @@
 import React, { useState, useEffect } from "react";
 //react-router-dom
 import { Link, useNavigate } from "react-router-dom";
-//firebase-auth
-import { signUp } from "../../../store/actions/auth/signUpActions";
 
 //firebase-storage
-import { fileDownload } from "../../../firebase/fileDowload";
+import { fileDownload } from "../../../firebase/fileDownload";
 //redux
-import { useDispatch } from "react-redux";
-import store from "../../../store";
+import { useDispatch, useSelector } from "react-redux";
+import { signUp } from "../../../store/actions/auth/signUpAction";
 
 const SignUp = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [stateUser, setStateUser] = useState(false);
-  const [error, setError] = useState(" ");
   const [datos, setDatos] = useState({
     email: "",
     password: "",
   });
+  const auth = useSelector((state) => state.auth);
+  
   useEffect(() => {
-    store.subscribe(() => {
-      const error = store.getState().authSlice.error;
-      if (error !== " ") {
-        setError(store.getState().authSlice.error);
-      }
-      setStateUser(store.getState().authSlice.activo);
-    });
-    if (stateUser === true) {
-      navigate("/", { replace: true });
+    if (auth.activo) {
+      navigate("/");
     }
-    setImg("bg-img", "img/bg/SignUp.png");
-    setImg("icon-card", "img/icons/SignUp.png");
-  });
+  }, [auth, navigate]);
+
 
   function handleInputChange(event) {
     setDatos({
@@ -46,16 +36,19 @@ const SignUp = () => {
     dispatch(signUp(datos.email, datos.password));
   };
   async function setImg(imgID, url) {
-    await fileDownload(url).then((res) => {
-      const img = document.getElementById(imgID);
-      img.src = res;
-    })
-    .catch((err) => {
-      if(err.name !== "TypeError"){
-        console.log(err);
-      }
-    })
+    await fileDownload(url)
+      .then((res) => {
+        const img = document.getElementById(imgID);
+        img.src = res;
+      })
+      .catch((err) => {
+        if (err.name !== "TypeError") {
+          console.log(err);
+        }
+      });
   }
+  setImg("bg-img", "img/bg/SignUp.png");
+  setImg("icon-card", "img/icons/SignUp.png");
 
   return (
     <div className="container__card">
@@ -65,7 +58,11 @@ const SignUp = () => {
           <img src="" id="icon-card" className="icon-card" alt="Icon account" />
         </div>
         <div className="card-body">
-          {error && <p className="error">{error}</p>}
+          {auth.error !== null(
+            <div className="alert alert-danger" role="alert">
+              {auth.error}
+            </div>
+          )}
           <form className="container___form">
             <input
               className="form__input"

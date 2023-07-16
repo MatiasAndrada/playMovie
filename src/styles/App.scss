@@ -1,4 +1,10 @@
 @import "/node_modules/bootstrap/scss/bootstrap.scss";
+//Tailwind
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+
 @import 'variables.scss';
 //App
 @import "../components/Home/Home.scss";
@@ -8,11 +14,24 @@
 //Auth
 @import "../components/Auth/SignIn/SignIn.scss";
 @import "../components/Auth/signUp/signUp.scss";
-//Movie
+//Movie Detail
 @import "../components/Movies/MovieDetail/MovieDetail.scss";
+//Movie List
 @import"../components/Movies/MovieList/MovieList.scss";
+//Movie
 @import"../components/Movies/MovieList/Movie/Movie.scss";
+//Movie Trending
+@import"../components/Movies/MoviesTrending/MovieTrending.scss";
 
-body{
-    background-color: black;
+
+//reset styles
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
 }
+body{
+    background-color: #000000;
+}
+

@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import { useDispatch } from "react-redux";
-import { fetchAllMovies } from "../../store/actions/movie/movies";
+import { fetchAllMovies } from "../../store/actions/movies/searchMovies";
 import { useNavigate } from "react-router-dom";
 
 

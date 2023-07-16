@@ -1,30 +1,22 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 //components
 import Movie from "./Movie/Movie";
-import MovieDetail from "../MovieDetail/MovieDetail";
-
+/* import MovieDetail from "../MovieDetail/MovieDetail"; */
 //redux
-import store from "../../../store";
+import { useSelector } from "react-redux";
 export const MovieList = () => {
-  const [movies, setMovies] = useState([]);
-  
-  useEffect(() => {
-    store.subscribe(() => {
-      setMovies(store.getState().movieSlice.listMovies);
-    });
-  }, [movies]);
-
+  const movies = useSelector((state) => state.searchMovies)
   return (
     <div className="movieList">
-      <MovieDetail />
-      {movies.map((data) => (
+{/*       <MovieDetail /> */}
+      {movies.listMovies.map((data) => (
         <Movie
-          key={data.imdbID}
-          Title={data.Title}
-          Poster={data.Poster}
-          Year={data.Year}
+          key={data.id}
+          Title={data.title}
+          Poster={data.poster_path}
+/*           Year={data.year}
           Type={data.Type}
-          imdbID={data.imdbID}
+          imdbID={data.imdbID} */
         />
       ))}
     </div>

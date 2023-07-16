@@ -8,32 +8,32 @@ import { DirectorSVG } from '../../../../assets/svg/iconsdetail/director';
 
 const DetailIcon = (data) => {
   return (
-    <div className="container__item">
-              <div className="box__item">
-                <GenreSVG className="item__img" width="32px"/>
-                <p className="item__text">{data.Genre}</p>
-              </div>
+<div className="flex justify-center space-x-4 mt-4">
+      <div className="flex items-center">
+        <GenreSVG className="w-6 h-6" />
+        <p className="text-xs text-gray-500">{data.Genre}</p>
+      </div>
 
-              <div className="box__item">
-                <LanguageSVG width="32px"/>
-                <p className="item__text">{data.Lenguage}</p>
-              </div>
+      <div className="flex items-center">
+        <LanguageSVG className="w-6 h-6" />
+        <p className="text-xs text-gray-500">{data.Language}</p>
+      </div>
 
-              <div className="box__item">
-                <RuntimeSVG width="32px"/>
-                <p className="item__text">{data.Runtime}</p>
-              </div>
+      <div className="flex items-center">
+        <RuntimeSVG className="w-6 h-6" />
+        <p className="text-xs text-gray-500">{data.Runtime}</p>
+      </div>
 
-              <div className="box__item">
-                <ActorsSVG width="32px"/>
-                <p className="item__text">{data.Actors}</p>
-              </div>
+      <div className="flex items-center">
+        <ActorsSVG className="w-6 h-6" />
+        <p className="text-xs text-gray-500">{data.Actors}</p>
+      </div>
 
-              <div className="box__item">
-                <DirectorSVG width="32px"/>
-                <p className="item__text">{data.Director}</p>
-              </div>
-            </div>
+      <div className="flex items-center">
+        <DirectorSVG className="w-6 h-6" />
+        <p className="text-xs text-gray-500">{data.Director}</p>
+      </div>
+    </div>
   )
 }
 

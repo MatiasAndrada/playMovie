@@ -1,13 +1,11 @@
 
   .movieList {
-    margin-top: 140px;
-    position: absolute;
+    position: relative;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     flex-wrap: wrap;
     height: auto;
     width: 100%;
-    z-index: -10;
   }
 

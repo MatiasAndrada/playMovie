@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { fetchMovieDetail } from "../../../../store/actions/movie/movieDetail";
+import { fetchMovieDetail } from "../../../../store/actions/movies/movieDetail";
 
 const Movie = (data) => {
   const dispatch = useDispatch();
@@ -22,6 +22,7 @@ const Movie = (data) => {
       >
         Ver detalles
       </button>
+      
     </div>
   );
 };

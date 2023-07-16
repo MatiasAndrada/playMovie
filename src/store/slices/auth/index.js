@@ -5,7 +5,7 @@ export const authSlice = createSlice({
   initialState: {
     loading: false,
     activo: false,
-    error: "",
+    error: null,
     user: {
       email: "",
       uid: ""
@@ -29,21 +29,18 @@ export const authSlice = createSlice({
         ...state,
         loading: false,
         activo: true,
-        error: " ",
+        error: null,
         user: action.payload,
       };
     },
-    setUserLogOut: (state, action)=>{
+    setUserLogOut: (state)=>{
       return{
         ...state,
         loading: false,
-        activo: action.payload,
-        error: "",
+        activo: false,
+        error: null,
         user: {},
       }
-    },
-    state: (state) => {
-      return { ...state };
     },
   },
 });

@@ -1,22 +1,19 @@
-import React, { useState } from "react";
-import store from "../../../store";
+
+import React from "react";
+//redux
+import { useSelector } from "react-redux";
 import MovieFavorite from "./MovieFavorite";
 
-export const favoriteList = () => {
-  const [state, setState] = useState([]);
-  
-  function stateChange(){
-      setState(store.getState().movieSlice.listMoviesFav)
-  }
-  store.subscribe(stateChange)
-  
-    return (
+export const FavoriteList = () => {
+  const favoriteList = useSelector((state) => state.favoriteSlice.favorite);
+
+  return (
     <div className="moviesFavList">
-        {state.map((data) => (
-            <MovieFavorite 
-            Title={data.Title}
-            Poster={data.Poster}/>
-        ))
+      {favoriteList.map((data) => (
+        <MovieFavorite
+          Title={data.Title}
+          Poster={data.Poster} />
+      ))
       }
 
 

@@ -2,38 +2,26 @@
 import React, { useState, useEffect } from "react";
 //react-router-dom
 import { Link, useNavigate } from "react-router-dom";
-//firebase-auth
-import { signIn } from "../../../store/actions/auth/signInAction";
 
 //firebase-storage
-import { fileDownload } from "../../../firebase/fileDowload";
+import { fileDownload } from "../../../firebase/fileDownload";
 //redux
-import { useDispatch } from "react-redux";
-import store from "../../../store"; 
+import { signIn } from "../../../store/actions/auth/signInAction";
+import { useDispatch, useSelector } from "react-redux";
 
 const SignIn = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [stateUser, setStateUser] = useState(false);
-  const [error, setError] = useState(" ");
   const [datos, setDatos] = useState({
     email: "",
     password: "",
   });
+  const auth = useSelector((state) => state.auth);
   useEffect(() => {
-    store.subscribe(() => {
-      const error = store.getState().authSlice.error;
-      if (error !== " ") {
-        setError(store.getState().authSlice.error);
-      }
-      setStateUser(store.getState().authSlice.activo);
-    });
-    if (stateUser === true) {
-      navigate("/", { replace: true });
+    if (auth.activo) {
+      navigate("/");
     }
-    setImg("bg-img", "img/bg/SignIn.png");
-    setImg("icon-card", "img/icons/SignIn.png");
-  });
+  }, [auth, navigate]);
 
   function handleInputChange(event) {
     setDatos({
@@ -44,7 +32,7 @@ const SignIn = () => {
   function handleSubmit(e) {
     e.preventDefault();
     dispatch(signIn(datos.email, datos.password));
-    }
+  }
 
   async function setImg(imgID, url) {
     await fileDownload(url)
@@ -53,11 +41,13 @@ const SignIn = () => {
         img.src = res;
       })
       .catch((err) => {
-      if(err.name !== "TypeError"){
-        console.log(err);
+        if (err.name !== "TypeError") {
+          console.log(err);
+        }
+      });
   }
-    })
-  }
+  setImg("bg-img", "img/bg/SignIn.png");
+  setImg("icon-card", "img/icons/SignIn.png");
 
   return (
     <div className="container__card">
@@ -67,7 +57,14 @@ const SignIn = () => {
           <img src="" id="icon-card" className="icon-card" alt="Icon account" />
         </div>
         <div className="card-body">
-          {error && <p className="error">{error}</p>}
+          {
+            auth.error && (
+              <div className="alert alert-danger" role="alert">
+                {auth.error}
+              </div>
+            )
+          }
+          <h2 className="title">Sign in</h2>
           <form className="container__form">
             <input
               className="form__input"

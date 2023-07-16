@@ -1,0 +1,32 @@
+.movie-board {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .movie-card {
+    width: 100%;
+    padding-bottom: 150%; /* Mantenemos el aspect ratio 1:1 para las imágenes */
+    background-size: cover;
+    background-position: center;
+    cursor: pointer;
+  }
+  
+  .movie-info {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 0;
+    z-index: 999;
+    transition: width 0.3s ease-in-out;
+    overflow: hidden;
+  }
+  
+  .movie-info.show {
+    width: 400px;
+  }
+  
+  .info-content {
+    padding: 1rem;
+  }
+  

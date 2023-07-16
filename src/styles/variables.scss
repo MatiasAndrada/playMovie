@@ -17,11 +17,11 @@ $headings: (
     h4: 0.8em,
     p: 1.1em);
 $colors: (
-    A: #0A0908,
-    B: #2b1e8d,
-    C: #2380be,
-    D: #1e2e63b5,
-    E: #9a3d1b,
+    A: #000000,
+    B: #d61e80,
+    C: #FF00FF,
+    D: #1435cbb5,
+    E: #FF4500,
     );
 $b-radius: (
     1: 10px,
@@ -31,5 +31,5 @@ $b-radius: (
 $font-title: "Vermin Vibes";
 $font-subtitle: 'Exo';
 $font-paragraph: 'Heebo';
-$textShasowEffect: 1px 1px 2px black, 0 0 1em blue, 0 0 0.2em blue;
-$textcolor: #edf2f4;
+$textShadowEffect: 1px 1px 2px black, 0 0 2em #FF00FF, 0 0 0.4em #FF4500;
+$textcolor: #e4ebee;
