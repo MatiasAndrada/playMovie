@@ -18,7 +18,7 @@ export const signUp = (email, password) => async (dispatch) => {
         uid: res.user.uid,
       };
       dispatch(setUserSuccess(userCurrent));
-      createFavoriteMovie()
+      dispatch(createFavoriteMovie(userCurrent.uid))
     })
     .catch((error) => {
       dispatch(setUserError(error.code));

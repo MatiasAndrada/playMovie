@@ -17,7 +17,7 @@ const SignUp = () => {
     password: "",
   });
   const auth = useSelector((state) => state.auth);
-  
+
   useEffect(() => {
     if (auth.activo) {
       navigate("/");
@@ -53,12 +53,13 @@ const SignUp = () => {
   return (
     <div className="container__card">
       <img src="" id="bg-img" className="img-bg" alt="Background SignUp" />
-      <div className="card">
+      <div className="card-d">
         <div className="card-header">
           <img src="" id="icon-card" className="icon-card" alt="Icon account" />
         </div>
         <div className="card-body">
-          {auth.error !== null(
+          <h2 className="title">Crear cuenta</h2>
+          {auth.error && (
             <div className="alert alert-danger" role="alert">
               {auth.error}
             </div>
@@ -78,9 +79,8 @@ const SignUp = () => {
               placeholder="Ingresa tu Contraseña"
               onChange={handleInputChange}
             />
-            <button className="cta" onClick={handleSubmit} type="submit">
-              <span>Sign Up</span>
-              <svg viewBox="0 0 13 10" height="10px" width="15px">
+            <button className="cta" type="submit" onClick={handleSubmit}>
+              <svg viewBox="0 0 13 10" height="15px" width="25px">
                 <path d="M1,5 L11,5"></path>
                 <polyline points="8 1 12 5 8 9"></polyline>
               </svg>
@@ -88,7 +88,7 @@ const SignUp = () => {
           </form>
           <p className="text-redirect">
             Ya tienes una cuenta?
-            <Link to="/signIn" className="link-redirect">
+            <Link to="/login" className="link-redirect">
               signIn
             </Link>
           </p>

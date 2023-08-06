@@ -1,6 +1,4 @@
-import * as React from "react"
 
-export const GenreSVG = (props) => (
   <svg
     viewBox="0 0 32 32"
     xmlSpace="preserve"
@@ -20,6 +18,6 @@ export const GenreSVG = (props) => (
       <path d="m24 8 6-6M17 11l-8 8M21 15l-4 4" />
     </g>
   </svg>
-)
+
 
 

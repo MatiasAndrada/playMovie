@@ -7,7 +7,7 @@ const MovieFavorite = (data) => {
   } */
   return (
     <div className="card">
-      <img className="card__img" src={data.Poster} alt="imageCard" />
+      <img className="card__img" src={`https://image.tmdb.org/t/p/w500/${data.Poster}`} alt="imageCard" />
       <div className="card__box">
         <h3 className="box__text">{data.Title}</h3>
         {/* <img

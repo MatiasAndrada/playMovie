@@ -1,19 +1,20 @@
 .container__bg {
   position: relative;
   width: 100%;
-  min-height: calc(100vh - 160px);
-  /* Resta la altura del navbar y el espacio de padding superior */
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  .text__home{
+
+  .text__home {
     background-color: map-get($colors, A);
     color: white;
     text-shadow: $textShadowEffect;
     border-radius: map-get($b-radius, 2);
     padding: 12px;
-    filter : drop-shadow(0 0 0.75rem #FF00FF);
+    filter: drop-shadow(0 0 0.75rem #FF00FF);
   }
+
   .container__bg--url {
     position: fixed;
     z-index: -10;
@@ -21,7 +22,7 @@
     /* Ajusta la posición superior para evitar superposición con el navbar y el espacio de padding superior */
     left: 0;
     width: 100%;
-    height: calc(100vh - 160px);
+    height: 100vh;
     /* Resta la altura del navbar y el espacio de padding superior */
     background: url(../../assets/svg/Bg/bgSVG.svg);
     background-position: center;

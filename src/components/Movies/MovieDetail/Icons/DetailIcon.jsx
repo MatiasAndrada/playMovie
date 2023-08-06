@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { GenreSVG } from '../../../../assets/svg/iconsdetail/genre';
+import  GenreSVG  from '../../../../assets/svg/iconsdetail/genre.svg';
 import { LanguageSVG } from '../../../../assets/svg/iconsdetail/language';
 import { RuntimeSVG } from '../../../../assets/svg/iconsdetail/clock_hour';
 import { ActorsSVG } from '../../../../assets/svg/iconsdetail/actors';

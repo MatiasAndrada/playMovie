@@ -12,8 +12,7 @@
       {
         "id": 12,
         "name": "Aventura"
-      },
-      {
+      },      {
         "id": 28,
         "name": "Acción"
       },
@@ -247,8 +246,7 @@
           "official": true,
           "published_at": "2023-06-21T13:27:20.000Z",
           "id": "649a3ca5d35dea00ec8ec990"
-        },
-        {
+        }        {
           "iso_639_1": "es",
           "iso_3166_1": "ES",
           "name": "Anuncio: '¿Quién es este hombre?'",

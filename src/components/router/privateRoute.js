@@ -4,5 +4,5 @@ import { useSelector } from "react-redux";
 
 export function PrivateRoute({ children }) {
   const auth = useSelector((state) => state.auth.activo);
-  return auth ? children : <Navigate to="/signIn" />;
+  return auth ? children : <Navigate to="/login" />;
 }

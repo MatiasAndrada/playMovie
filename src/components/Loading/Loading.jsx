@@ -1,6 +1,6 @@
 import * as React from "react"
 
-const SvgComponent = (props) => (
+const Loading = (props) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     style={{
@@ -9,8 +9,10 @@ const SvgComponent = (props) => (
       display: "block",
       shapeRendering: "auto",
     }}
+    /*
     width={197}
     height={197}
+    */
     viewBox="0 0 100 100"
     preserveAspectRatio="xMidYMid"
     {...props}
@@ -28,4 +30,4 @@ const SvgComponent = (props) => (
   </svg>
 )
 
-export default SvgComponent
+export default Loading

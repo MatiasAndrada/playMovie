@@ -52,11 +52,13 @@ const SignIn = () => {
   return (
     <div className="container__card">
       <img src="" id="bg-img" className="img-bg" alt="Background SignIn" />
-      <div className="card">
+
+      <div className="card-d">
         <div className="card-header">
           <img src="" id="icon-card" className="icon-card" alt="Icon account" />
         </div>
         <div className="card-body">
+          <h2 className="title">Iniciar sesión</h2>
           {
             auth.error && (
               <div className="alert alert-danger" role="alert">
@@ -64,7 +66,6 @@ const SignIn = () => {
               </div>
             )
           }
-          <h2 className="title">Sign in</h2>
           <form className="container__form">
             <input
               className="form__input"
@@ -81,11 +82,18 @@ const SignIn = () => {
               onChange={handleInputChange}
             />
             <button className="cta" type="submit" onClick={handleSubmit}>
-              <span>Sign in</span>
-              <svg viewBox="0 0 13 10" height="10px" width="15px">
-                <path d="M1,5 L11,5"></path>
-                <polyline points="8 1 12 5 8 9"></polyline>
-              </svg>
+              {
+                auth.loading ? (
+                  <div className="spinner-border text-light" role="status">
+                    <span className="visually-hidden">Loading...</span>
+                  </div>
+                ) : (
+                  <svg viewBox="0 0 13 10" height="15px" width="25px">
+                    <path d="M1,5 L11,5"></path>
+                    <polyline points="8 1 12 5 8 9"></polyline>
+                  </svg>
+                )
+              }
             </button>
           </form>
           <p className="text-redirect">

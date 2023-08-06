@@ -1,6 +1,6 @@
 import React from "react";
 import Search from "./Search";
-import { FavoriteList } from "../Favorite/favoriteList";
+import { FavoriteList } from "./Favorite/favoriteList";
 import { Dropdown, Navbar } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 // redux
@@ -9,11 +9,12 @@ import { logOut } from "../../store/actions/auth/logOutAction";
 // firebase
 import { fileDownload } from "../../firebase/fileDownload";
 
+
 const NavBar = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const stateUser = useSelector((state) => state.auth.activo);
+  const {activo, user} = useSelector((state) => state.auth);
 
   function logOutUser() {
     dispatch(logOut());
@@ -30,7 +31,7 @@ const NavBar = () => {
         }
       });
   }
-  if (stateUser === true) {
+  if (activo === true) {
     setImg("account-icon", "img/icons/user-accepted.png");
     setImg("favorite-list-icon", "img/icons/favorite-list.png");
   } else {
@@ -51,7 +52,7 @@ const NavBar = () => {
         </div>
       </Navbar.Brand>
       <Search />
-      {stateUser === true && (
+      {activo === true && (
         <Dropdown className="dropdownFavoriteList" drop={"start"}>
           <Dropdown.Toggle id="dropdown-basic" className="dropdownToggle">
             <img
@@ -63,7 +64,7 @@ const NavBar = () => {
           </Dropdown.Toggle>
           <Dropdown.Menu className="dropDownMenu" flip={true} >
             <div className="dropDownItem">
-              <FavoriteList />
+              <FavoriteList idUser={user.uid}/>
             </div>
           </Dropdown.Menu>
         </Dropdown>
@@ -85,7 +86,7 @@ const NavBar = () => {
           align={"end"}
           variant={"dark"}
         >
-          {stateUser ? (
+          {activo ? (
             <Dropdown.Item onClick={logOutUser} className="dropdownItem">
               Log Out
             </Dropdown.Item>
@@ -94,7 +95,7 @@ const NavBar = () => {
               {" "}
               <Dropdown.Item
                 onClick={() => {
-                  navigate("/signIn", { replace: true });
+                  navigate("/login", { replace: true });
                 }}
                 className="dropdownItem"
               >
@@ -102,7 +103,7 @@ const NavBar = () => {
               </Dropdown.Item>
               <Dropdown.Item
                 onClick={() => {
-                  navigate("/signUp", { replace: true });
+                  navigate("/register", { replace: true });
                 }}
                 className="dropdownItem"
               >

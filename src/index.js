@@ -7,6 +7,8 @@ import rootReducer from "./store/rootReducer";
 // router
 import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
+// modal
+import Modal from "react-modal";
 // Styles
 import "./index.css";
 import "./styles/App.scss";
@@ -21,6 +23,7 @@ const store = configureStore({
   reducer: rootReducer
 });
 
+Modal.setAppElement(rootElement);
     
 root.render(
     <BrowserRouter>

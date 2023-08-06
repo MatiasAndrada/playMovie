@@ -16,7 +16,7 @@ export const authSlice = createSlice({
       state.loading = action.payload;
     },
     setUserError: (state, action) => {
-      return{
+      return {
         ...state,
         loading: false,
         activo: false,
@@ -33,8 +33,8 @@ export const authSlice = createSlice({
         user: action.payload,
       };
     },
-    setUserLogOut: (state)=>{
-      return{
+    setUserLogOut: (state) => {
+      return {
         ...state,
         loading: false,
         activo: false,

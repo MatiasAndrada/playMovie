@@ -9,19 +9,20 @@
 //App
 @import "../components/Home/Home.scss";
 //Navbar
-@import "../components/NavBar/NavBar.scss";
-@import "../components/Favorite/FavoriteCard.scss";
+@import "../components/Navbar/Navbar.scss";
+@import "../components/Navbar/Favorite/FavoriteCard.scss";
 //Auth
 @import "../components/Auth/SignIn/SignIn.scss";
 @import "../components/Auth/signUp/signUp.scss";
 //Movie Detail
 @import "../components/Movies/MovieDetail/MovieDetail.scss";
 //Movie List
-@import"../components/Movies/MovieList/MovieList.scss";
-//Movie
-@import"../components/Movies/MovieList/Movie/Movie.scss";
+@import"../components/Movies/MovieList/MoviesSearch/MoviesSearch.scss";
+
 //Movie Trending
-@import"../components/Movies/MoviesTrending/MovieTrending.scss";
+@import"../components/Movies/MovieList/MoviesTrending/MoviesTrending.scss";
+//Custom Player
+@import "../components/CustomPlayer/CustomPlayer.scss";
 
 
 //reset styles
@@ -35,3 +36,9 @@ body{
     background-color: #000000;
 }
 
+.content-container{
+    //restar el tamaño del navbar
+    padding-top: 160px;
+    min-height: calc(100vh - 160px);
+    
+}

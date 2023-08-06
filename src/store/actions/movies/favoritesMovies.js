@@ -4,32 +4,74 @@ import {
   setDoc,
   updateDoc,
   arrayUnion,
-  deleteField,
+
 } from "firebase/firestore";
-//redux
+import { setMoviesFav, setError, setLoading } from "../../slices/favoritesMovies";
 
 
-export function createFavoriteMovie(idUser) {
-  setDoc(doc(db, "userData", idUser), {});
-}
 
-export async function deleteFavoriteMovie(idUser) {
-  const ref = doc(db, "userData", idUser);
-  await updateDoc(ref, {
-    movies: deleteField(),
-  });
-}
+export const createFavoriteMovie = (idUser) => async (dispatch) => {
+  dispatch(setLoading(true));
+  console.log(0)
+  console.log(idUser)
+  try {
+    const ref = doc(db, "userData", idUser);
+    await setDoc(ref, {
+      movies: [],
+    });
+    dispatch(setLoading(false));
+  } catch (error) {
+    dispatch(setError(error));
+  }
+};  
 
-export async function writeFavoriteMovie(idUser, Title, Poster, key) {
-  const ref = doc(db, "userData", idUser);
-  const dataFavorite = {
-    movieID: key,
-    movieData: {
-      Title: Title,
-      Poster: Poster,
-    },
-  };
-  await updateDoc(ref, {
-    movies: arrayUnion(dataFavorite),
-  });
-}
+export const deleteFavoriteMovie = (idUser) => async (dispatch) => {
+  dispatch(setLoading(true));
+  try {
+    const ref = doc(db, "userData", idUser);
+    await setDoc(ref, {
+      movies: [],
+    });
+    dispatch(setLoading(false));
+  }
+  catch (error) {
+    dispatch(setError(error));
+  }
+};
+export const addFavoriteMovie = (idUser, Title, Poster, key) => async (dispatch) => {
+  dispatch(setLoading(true));
+  try {
+    const ref = doc(db, "userData", idUser);
+    const dataFavorite = {
+      movieID: key,
+      movieData: {
+        Title: Title,
+        Poster: Poster,
+      },
+    };
+    updateDoc(ref, {
+      movies: arrayUnion(dataFavorite),
+    });
+    dispatch(setLoading(false));
+  } catch (error) {
+    dispatch(setError(error));
+  }
+};
+
+export const getFavoriteMovies = (idUser) => async (dispatch) => {
+  dispatch(setLoading(true));
+  try {
+    const ref = doc(db, "userData", idUser);
+    const docSnap = await ref.get();
+    if (docSnap.exists()) {
+      const data = docSnap.data();
+      dispatch(setMoviesFav(data.movies));
+    } else {
+      dispatch(createFavoriteMovie([]));
+    }
+    dispatch(setLoading(false));
+  } catch (error) {
+    dispatch(setError(error));
+  }
+
+};
