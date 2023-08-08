@@ -38,6 +38,7 @@ const MovieDetail = ({ movieId }) => {
   const { objectMovieDetail, error, loading } = useSelector(
     (state) => state.detailMovie
   );
+  const listMoviesFav = useSelector((state) => state.favoriteMovies.lisMoviesFav)
 
 
   useEffect(() => {
@@ -80,7 +81,7 @@ const MovieDetail = ({ movieId }) => {
     navigate(`/searchByActor/${actorId}`);
   }
   function handleAddFavoriteMovie(title, poster, movieId) {
-    dispatch(addFavoriteMovie(user.id, title, poster, movieId));
+    dispatch(addFavoriteMovie(user.uid, title, poster, movieId));
   }
 
 
@@ -168,19 +169,35 @@ const MovieDetail = ({ movieId }) => {
                   </h2>
                   {
                     activo ? (
-                      <button
-                        className="flex items-center text-white text-xl bg-red-500 px-4 py-2 rounded-lg"
-                        onClick={() =>
-                          handleAddFavoriteMovie(
-                            objectMovieDetail.title,
-                            objectMovieDetail.poster_path,
-                            objectMovieDetail.id
-                          )
-                        }
-                      >
-                        <AiOutlineHeart className="mr-2" />
-                        Agregar a favoritos
-                      </button>
+                      listMoviesFav.find((movie => movie.movieId === movieId)) ? (
+                        < button
+                          className="flex items-center text-white text-xl bg-red-500 px-4 py-2 rounded-lg"
+                          onClick={() =>
+                            handleAddFavoriteMovie(
+                              objectMovieDetail.title,
+                              objectMovieDetail.poster_path,
+                              objectMovieDetail.id
+                            )
+                          }
+                        >
+                          <AiFillHeart className="mr-2" />
+                          Eliminar de favoritos
+                        </button>
+                      ) : (
+                        <button
+                          className="flex items-center text-white text-xl bg-red-500 px-4 py-2 rounded-lg"
+                          onClick={() =>
+                            handleAddFavoriteMovie(
+                              objectMovieDetail.title,
+                              objectMovieDetail.poster_path,
+                              objectMovieDetail.id
+                            )
+                          }
+                        >
+                          <AiOutlineHeart className="mr-2" />
+                          Agregar a favoritos
+                        </button>
+                      )
                     ) : (
                       <button
                         className="flex items-center text-white text-xl bg-red-500 px-4 py-2 rounded-lg"
@@ -337,8 +354,8 @@ const MovieDetail = ({ movieId }) => {
               </div>
             </motion.div>
           </div>
-        </div>
-      </Modal>
+        </div >
+      </Modal >
     </>
   );
 };

@@ -10,18 +10,16 @@ export const favoritesMoviesSlice = createSlice({
     reducers: {
         setMoviesFav: (state, action) => {
             state.listMoviesFav = action.payload;
-            state.error = []; // Restablecer el estado de error a null en una búsqueda exitosa
-            state.loading = false; // Restablecer el estado de carga a false en una búsqueda exitosa
+            state.error = [];
         },
         setLoading: (state, action) => {
             state.loading = action.payload;
         },
         setError: (state, action) => {
             state.error = action.payload;
-            state.listMoviesFav = []; // Restablecer la lista de películas a un estado vacío en caso de error
-            state.loading = false; // Restablecer el estado de carga a false en caso de error
+            state.listMoviesFavorite = [];
 
-        }   
+        }
     },
 });
 

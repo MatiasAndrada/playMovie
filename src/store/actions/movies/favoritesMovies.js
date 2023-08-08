@@ -1,29 +1,43 @@
 import { db } from "../../../firebase/config";
+import { doc, setDoc, updateDoc, arrayUnion, getDoc } from "firebase/firestore";
 import {
-  doc,
-  setDoc,
-  updateDoc,
-  arrayUnion,
+  setMoviesFav,
+  setError,
+  setLoading,
+} from "../../slices/favoritesMovies";
 
-} from "firebase/firestore";
-import { setMoviesFav, setError, setLoading } from "../../slices/favoritesMovies";
-
-
+export const getFavoriteMovies = (idUser) => async (dispatch) => {
+  dispatch(setLoading(true));
+  console.log("getFavoriteMovies",  idUser)
+  try {
+    const docRef = doc(db, "userData", idUser);
+    const docSnap = await getDoc(docRef);
+    if (docSnap.exists()) {
+      const data = docSnap.data();
+      dispatch(setMoviesFav(data.movies));
+    } else {
+      dispatch(createFavoriteMovie([]));
+    }
+  } catch (error) {
+    dispatch(setError(error));
+  } finally {
+    dispatch(setLoading(false));
+  }
+};
 
 export const createFavoriteMovie = (idUser) => async (dispatch) => {
   dispatch(setLoading(true));
-  console.log(0)
-  console.log(idUser)
   try {
     const ref = doc(db, "userData", idUser);
     await setDoc(ref, {
       movies: [],
     });
-    dispatch(setLoading(false));
   } catch (error) {
     dispatch(setError(error));
+  } finally {
+    dispatch(setLoading(false));
   }
-};  
+};
 
 export const deleteFavoriteMovie = (idUser) => async (dispatch) => {
   dispatch(setLoading(true));
@@ -32,46 +46,89 @@ export const deleteFavoriteMovie = (idUser) => async (dispatch) => {
     await setDoc(ref, {
       movies: [],
     });
+  } catch (error) {
+    dispatch(setError(error));
+  } finally {
     dispatch(setLoading(false));
+  }
+};
+
+export const addFavoriteMovie =
+  (idUser, Title, Poster, key) => async (dispatch) => {
+    dispatch(setLoading(true));
+    try {
+      //verificar si el usuario tiene una lista de favoritos, si no tiene crearla
+      const docRef = doc(db, "userData", idUser);
+      const docSnap = await getDoc(docRef);
+      if (docSnap.exists()) {
+        //si existe el usuario, agregar la película a la lista de favoritos
+        const ref = doc(db, "userData", idUser);
+        await updateDoc(ref, {
+          movies: arrayUnion({
+            title: Title,
+            poster: Poster,
+            key: key,
+          }),
+        });
+      } else {
+        //si no existe el usuario, crear la lista de favoritos y agregar la película
+        const ref = doc(db, "userData", idUser);
+        await setDoc(ref, {
+          movies: [
+            {
+              title: Title,
+              poster: Poster,
+              movieId: key,
+            },
+          ],
+        });
+      }
+      dispatch(getFavoriteMovies(idUser));
+    } catch (error) {
+      dispatch(setError(error));
+    } finally {
+      dispatch(setLoading(false));
+    }
+  };
+
+
+export const deleteFavoriteMovieById = (idUser, movieId) => async (
+  dispatch
+) => {
+  dispatch(setLoading(true));
+  try {
+    const userRef = doc(db, "userData", idUser);
+    const userSnapshot = await getDoc(userRef);
+
+    if (userSnapshot.exists()) {
+      const userData = userSnapshot.data();
+      const updatedMovies = userData.movies.filter(movie => movie.key !== movieId);
+
+      await updateDoc(userRef, {
+        movies: updatedMovies,
+      });
+
+      dispatch(getFavoriteMovies(idUser));
+    }
   }
   catch (error) {
     dispatch(setError(error));
+  } finally {
+    dispatch(setLoading(false));
   }
-};
-export const addFavoriteMovie = (idUser, Title, Poster, key) => async (dispatch) => {
+}
+export const deleteFavoriteMovies = (idUser) => async (dispatch) => {
   dispatch(setLoading(true));
   try {
+    console.log(0)
     const ref = doc(db, "userData", idUser);
-    const dataFavorite = {
-      movieID: key,
-      movieData: {
-        Title: Title,
-        Poster: Poster,
-      },
-    };
-    updateDoc(ref, {
-      movies: arrayUnion(dataFavorite),
+    await updateDoc(ref, {
+      movies: [],
     });
-    dispatch(setLoading(false));
+    dispatch(getFavoriteMovies(idUser));
   } catch (error) {
     dispatch(setError(error));
-  }
-};
-
-export const getFavoriteMovies = (idUser) => async (dispatch) => {
-  dispatch(setLoading(true));
-  try {
-    const ref = doc(db, "userData", idUser);
-    const docSnap = await ref.get();
-    if (docSnap.exists()) {
-      const data = docSnap.data();
-      dispatch(setMoviesFav(data.movies));
-    } else {
-      dispatch(createFavoriteMovie([]));
-    }
+  } finally {
     dispatch(setLoading(false));
-  } catch (error) {
-    dispatch(setError(error));
   }
-
-};
+}
