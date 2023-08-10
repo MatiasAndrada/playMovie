@@ -17,7 +17,7 @@ export const favoritesMoviesSlice = createSlice({
         },
         setError: (state, action) => {
             state.error = action.payload;
-            state.listMoviesFavorite = [];
+            state.listMoviesFav = [];
 
         }
     },

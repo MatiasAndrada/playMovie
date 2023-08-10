@@ -99,10 +99,12 @@ export const deleteFavoriteMovieById = (idUser, movieId) => async (
   try {
     const userRef = doc(db, "userData", idUser);
     const userSnapshot = await getDoc(userRef);
-
+console.log(idUser, movieId)
     if (userSnapshot.exists()) {
       const userData = userSnapshot.data();
+      console.log(userData)
       const updatedMovies = userData.movies.filter(movie => movie.key !== movieId);
+      console.log(updatedMovies)
 
       await updateDoc(userRef, {
         movies: updatedMovies,
