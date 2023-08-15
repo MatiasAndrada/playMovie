@@ -176,7 +176,8 @@ const MovieDetail = ({ movieId }) => {
                   {activo ? (
                     listMoviesFav?.length !== undefined && listMoviesFav.length !== 0 ? (
                       isFavorite ? (
-                        <button
+                        <motion.button
+                          whileHover={{ scale: 1.05 }}
                           className="flex items-center text-white text-xl bg-red-500 px-4 py-2 rounded-lg"
                           onClick={() =>
                             dispatch(deleteFavoriteMovieById(user.uid, movieId))
@@ -184,9 +185,10 @@ const MovieDetail = ({ movieId }) => {
                         >
                           <AiFillHeart className="mr-2" />
                           Eliminar de favoritos
-                        </button>
+                        </motion.button>
                       ) : (
-                        <button
+                        <motion.button
+                          whileHover={{ scale: 1.05 }}
                           className="flex items-center text-white text-xl bg-red-500 px-4 py-2 rounded-lg"
                           onClick={() =>
                             handleAddFavoriteMovie(
@@ -198,10 +200,11 @@ const MovieDetail = ({ movieId }) => {
                         >
                           <AiOutlineHeart className="mr-2" />
                           Agregar a favoritos
-                        </button>
+                        </motion.button>
                       )
                     ) : (
-                      <button
+                      <motion.button
+                        whileHover={{ scale: 1.05 }}
                         className="flex items-center text-white text-xl bg-red-500 px-4 py-2 rounded-lg"
                         onClick={() =>
                           handleAddFavoriteMovie(
@@ -213,16 +216,17 @@ const MovieDetail = ({ movieId }) => {
                       >
                         <AiOutlineHeart className="mr-2" />
                         Agregar a favoritos
-                      </button>
+                      </motion.button>
                     )
                   ) : (
-                    <button
+                    <motion.button
+                      whileHover={{ scale: 1.05 }}
                       className="flex items-center text-white text-xl bg-red-500 px-4 py-2 rounded-lg"
                       onClick={() => navigate("/login")}
                     >
                       <AiOutlineHeart className="mr-2" />
                       Agregar a favoritos
-                    </button>
+                    </motion.button>
                   )}
 
                 </div>
