@@ -1,6 +1,7 @@
 # Proyecto Movie [Working]
 
-This project was deploy [Ver demo en vivo]("https://playmovie.website")
+
+This project was deploy [Ver demo en vivo](https://playmovie.website)
 
 
 ## Available Scripts
