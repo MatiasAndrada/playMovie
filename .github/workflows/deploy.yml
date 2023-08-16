@@ -1,4 +1,4 @@
-name: Deploy Build Content to Deploy Branch
+name: Deploy Build to Deploy Branch
 
 on:
   push:
@@ -13,15 +13,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Create or update deploy branch
-        run: |
-          git checkout -B deploy
-          git push origin deploy
-
-      - name: Copy build content to deploy
+      - name: Copy build to deploy
         run: |
           mkdir -p deploy
           cp -r build/* deploy/
           git add deploy
           git commit -m "Update deploy branch"
-          git push origin deploy
+          git push origin master
