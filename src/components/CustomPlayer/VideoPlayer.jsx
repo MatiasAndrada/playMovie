@@ -74,7 +74,6 @@ export const VideoPlayer = ({ src }) => {
               showinfo: 0, // Desactivamos la información del video
               modestbranding: 1, // Desactivamos el branding de YouTube
               rel: 0, // Desactivamos los videos relacionados
-              fs: 0, // Desactivamos el botón de pantalla completa
               autoplay : 0, // Activamos la reproducción automática
             },
           },

@@ -8,7 +8,7 @@ import "./styles/App.scss";
 // router
 import { PrivateRoute } from "./components/router/privateRoute";
 // components
-import Navbar from "./components/Navbar/Navbar";
+import NavBar from "./components/NavBar/NavBar";
 import Home from "./components/Home/Home";
 import MovieTrending from "./components/Movies/MovieList/MoviesTrending/MoviesTrending";
 import MovieListActors from "./components/Movies/MovieList/MovieListActors/MovieListActors";
@@ -22,7 +22,7 @@ import SignUp from "./components/Auth/SignUp/SignUp";
 function App() {
   return (
     <div className="app-container">
-      <Navbar />
+      <NavBar />
 
       <div className="content-container">
         <Routes>
