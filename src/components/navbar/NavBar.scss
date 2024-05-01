@@ -1,0 +1,56 @@
+@import "../../styles/variables.scss";
+
+.container__navbar {
+  display: flex;
+  justify-content: space-around;
+
+  position: fixed;
+  width: 100%;
+  height: 140px;
+  padding: 0;
+  margin: 0;
+  z-index: 100;
+  background-color: map-get($colors, A);
+
+  .navbar__logo {
+    width: 160px;
+  }
+
+  .dropdownAccount {
+    .dropdownToggle {
+      .accountIcon {
+        height: 45px;
+        filter: invert(100%);
+      }
+    }
+
+    .dropDownMenuAccount {
+      background-color: map-get($colors, B);
+
+      .dropdownItem {
+        color: white;
+      }
+    }
+  }
+
+  .dropdownFavoriteList {
+    .dropdownToggle {
+      .favoriteListIcon {
+        height: 45px;
+        filter: invert(100%);
+      }
+    }
+  }
+}
+
+.dropdown-item {
+  white-space: normal;
+}
+
+.dropdown-toggle::after {
+  content: none;
+}
+
+.btn-primary {
+  border: none;
+}
