@@ -1,7 +1,7 @@
 import React from "react";
 import Search from "./Search";
-import { FavoriteList } from "./Favorite/favoriteList";
-import { Dropdown, Navbar } from "react-bootstrap";
+import { FavoriteList } from "./favorite/FavoriteList";
+import { Dropdown, Navbar as NavbarUI } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 // redux
 import { useDispatch, useSelector } from "react-redux";
@@ -9,12 +9,11 @@ import { logOut } from "../../store/actions/auth/logOutAction";
 // firebase
 import { fileDownload } from "../../firebase/fileDownload";
 
-
-const NavBar = () => {
+const Navbar = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const {activo, user} = useSelector((state) => state.auth);
+  const { activo, user } = useSelector((state) => state.auth);
 
   function logOutUser() {
     dispatch(logOut());
@@ -40,8 +39,8 @@ const NavBar = () => {
   setImg("header-img", "img/icons/Header.png");
 
   return (
-    <Navbar className="container__navbar ">
-      <Navbar.Brand>
+    <NavbarUI className="container__navbar ">
+      <NavbarUI.Brand>
         <div onClick={() => navigate("/", { replace: true })}>
           <img
             src=""
@@ -50,7 +49,7 @@ const NavBar = () => {
             id="header-img"
           />
         </div>
-      </Navbar.Brand>
+      </NavbarUI.Brand>
       <Search />
       {activo === true && (
         <Dropdown className="dropdownFavoriteList" drop={"start"}>
@@ -62,9 +61,9 @@ const NavBar = () => {
               className="favoriteListIcon"
             />
           </Dropdown.Toggle>
-          <Dropdown.Menu className="dropDownMenu" flip={true} >
+          <Dropdown.Menu className="dropDownMenu" flip={true}>
             <div className="dropDownItem">
-              <FavoriteList idUser={user.uid}/>
+              <FavoriteList idUser={user.uid} />
             </div>
           </Dropdown.Menu>
         </Dropdown>
@@ -113,7 +112,8 @@ const NavBar = () => {
           )}
         </Dropdown.Menu>
       </Dropdown>
-    </Navbar>
+    </NavbarUI>
   );
 };
-export default NavBar;
+
+export default Navbar;

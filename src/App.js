@@ -1,6 +1,5 @@
 import React from "react";
 
-
 // router
 import { Route, Routes } from "react-router-dom";
 // styles
@@ -8,16 +7,16 @@ import "./styles/App.scss";
 // router
 import { PrivateRoute } from "./components/router/privateRoute";
 // components
-import NavBar from "./components/NavBar/NavBar";
-import Home from "./components/Home/Home";
-import MovieTrending from "./components/Movies/MovieList/MoviesTrending/MoviesTrending";
-import MovieListActors from "./components/Movies/MovieList/MovieListActors/MovieListActors";
-import MoviesSearch from "./components/Movies/MovieList/MoviesSearch/MoviesSearch";
-import SignIn from "./components/Auth/SignIn/SignIn";
-import SignUp from "./components/Auth/SignUp/SignUp";
+import NavBar from "./components/navbar/Navbar";
+import Home from "./components/home/Home";
+import MovieTrending from "./components/movies/movieList/moviesTrending/MoviesTrending";
+import MovieListActors from "./components/movies/movieList/movieListActors/MovieListActors";
+import MoviesSearch from "./components/movies/movieList/moviesSearch/MoviesSearch";
+import SignIn from "./components/auth/signIn/SignIn";
+import SignUp from "./components/auth/signUp/SignUp";
 
+//TODO
 /* import MyAccount from "./components/MyAccount/MyAccount"  */
-
 
 function App() {
   return (
@@ -51,6 +50,5 @@ function App() {
     </div>
   );
 }
-
 
 export default App;

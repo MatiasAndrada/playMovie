@@ -6,22 +6,22 @@
 
 @import "variables.scss";
 //App
-@import "../components/Home/Home.scss";
+@import "../components/home/Home.scss";
 //Navbar
-@import "../components/Navbar/Navbar.scss";
-@import "../components/Navbar/Favorite/FavoriteCard.scss";
+@import "../components/navbar/Navbar.scss";
+@import "../components/navbar/favorite/FavoriteCard.scss";
 //Auth
-@import "../components/Auth/SignIn/SignIn.scss";
-@import "../components/Auth/signUp/signUp.scss";
+@import "../components/auth/signIn/SignIn.scss";
+@import "../components/auth/signUp/SignUp.scss";
 //Movie Detail
-@import "../components/Movies/MovieDetail/MovieDetail.scss";
+@import "../components/movies/movieDetail/MovieDetail.scss";
 //Movie List
-@import "../components/Movies/MovieList/MoviesSearch/MoviesSearch.scss";
+@import "../components/movies/movieList/moviesSearch/MoviesSearch.scss";
 
 //Movie Trending
-@import "../components/Movies/MovieList/MoviesTrending/MoviesTrending.scss";
+@import "../components/movies/movieList/moviesTrending/MoviesTrending.scss";
 //Custom Player
-@import "../components/CustomPlayer/CustomPlayer.scss";
+@import "../components/customPlayer/CustomPlayer.scss";
 
 //reset styles
 * {

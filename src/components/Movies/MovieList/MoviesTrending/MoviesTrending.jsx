@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import MovieDetails from "../../MovieDetail/MovieDetail";
+import MovieDetails from "../../movieDetail/MovieDetail";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchTrendingMovies } from "../../../../store/actions/movies/moviesTrending";
 import { motion } from "framer-motion";
@@ -17,26 +17,23 @@ const MoviesTrending = () => {
 
   const handleMovieCardClickWithSpinner = (ID) => {
     setSelectedMovie(ID);
-
   };
-
 
   if (trendingMovies.error) {
     return (
       <div className="text-red-500 text-center text-3xl my-3 bg-black p-1">
-        <b>Ocurrió un error:</b> {`${trendingMovies.error.code},  ${trendingMovies.error.message}`}
+        <b>Ocurrió un error:</b>{" "}
+        {`${trendingMovies.error.code},  ${trendingMovies.error.message}`}
       </div>
     );
   }
 
   return (
     <div className="mx-10 py-8">
-      <h2 className="text-6xl text-center mb-7 font-bold text-white bg-black p-2">Trending Movies</h2>
-      {selectedMovie && (
-        <MovieDetails
-          movieId={selectedMovie}
-        />
-      )}
+      <h2 className="text-6xl text-center mb-7 font-bold text-white bg-black p-2">
+        Trending Movies
+      </h2>
+      {selectedMovie && <MovieDetails movieId={selectedMovie} />}
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6">
         {trendingMovies.listMovies.map((movie) => (
           <motion.div
@@ -67,7 +64,6 @@ const MoviesTrending = () => {
       </div>
     </div>
   );
-
 };
 
 export default MoviesTrending;

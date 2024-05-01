@@ -7,7 +7,10 @@ import {
 } from "../../../store/actions/movies/movieDetail";
 
 //favorites movies
-import { addFavoriteMovie, deleteFavoriteMovieById } from "../../../store/actions/movies/favoritesMovies";
+import {
+  addFavoriteMovie,
+  deleteFavoriteMovieById,
+} from "../../../store/actions/movies/favoritesMovies";
 
 import { useNavigate } from "react-router-dom";
 import {
@@ -20,7 +23,7 @@ import {
   AiOutlineHeart,
   AiFillHeart,
 } from "react-icons/ai";
-import { VideoPlayer } from "../../CustomPlayer/VideoPlayer";
+import { VideoPlayer } from "../../customPlayer/VideoPlayer";
 
 import { BiTimeFive } from "react-icons/bi";
 import Slider from "react-slick";
@@ -38,14 +41,14 @@ const MovieDetail = ({ movieId }) => {
   const { objectMovieDetail, error, loading } = useSelector(
     (state) => state.detailMovie
   );
-  const listMoviesFav = useSelector((state) => state.favoriteMovies.listMoviesFav)
+  const listMoviesFav = useSelector(
+    (state) => state.favoriteMovies.listMoviesFav
+  );
 
-  console.log("idMovie", movieId)
-  console.log("listMoviesFav", listMoviesFav)
-  const isFavorite = listMoviesFav.find((movie) => movie.key === movieId)
-  console.log("isFavorite", isFavorite)
-
-
+  console.log("idMovie", movieId);
+  console.log("listMoviesFav", listMoviesFav);
+  const isFavorite = listMoviesFav.find((movie) => movie.key === movieId);
+  console.log("isFavorite", isFavorite);
 
   useEffect(() => {
     dispatch(fetchMovieDetail(movieId));
@@ -74,14 +77,15 @@ const MovieDetail = ({ movieId }) => {
 
   const formatActors = objectMovieDetail.credits?.cast
     ? objectMovieDetail.credits.cast.filter(
-      (actor) => actor.name && actor.profile_path && actor.character && actor.id
-    )
+        (actor) =>
+          actor.name && actor.profile_path && actor.character && actor.id
+      )
     : [];
   const formatDirector = objectMovieDetail.credits?.crew
     ? objectMovieDetail.credits.crew
-      .filter((crew) => crew.job === "Director")
-      .map((director) => director.name)
-      .join(", ")
+        .filter((crew) => crew.job === "Director")
+        .map((director) => director.name)
+        .join(", ")
     : "";
   function FindActorMovies(actorId) {
     navigate(`/searchByActor/${actorId}`);
@@ -89,8 +93,6 @@ const MovieDetail = ({ movieId }) => {
   function handleAddFavoriteMovie(title, poster, movieId) {
     dispatch(addFavoriteMovie(user.uid, title, poster, movieId));
   }
-
-
 
   if (error) {
     return (
@@ -146,16 +148,18 @@ const MovieDetail = ({ movieId }) => {
         <div className="flex flex-col w-full">
           <div className="flex-1 flex justify-center items-center">
             <div className="w-2/3 h-full">
-              {objectMovieDetail.videos?.results && objectMovieDetail.videos.results.length > 0 ? (
+              {objectMovieDetail.videos?.results &&
+              objectMovieDetail.videos.results.length > 0 ? (
                 <VideoPlayer
                   src={`https://www.youtube.com/watch?v=${objectMovieDetail.videos.results[0].key}`}
                 />
               ) : (
-                <h3 className="text-white text-3xl font-bold d-flex justify-center 
-                items-center h-full" >
+                <h3
+                  className="text-white text-3xl font-bold d-flex justify-center 
+                items-center h-full"
+                >
                   No hay trailer disponible
                 </h3>
-
               )}
             </div>
             <div className="bg-gray-800 text-white p-4 w-1/3 h-100">
@@ -174,7 +178,8 @@ const MovieDetail = ({ movieId }) => {
                     {objectMovieDetail.title}
                   </h2>
                   {activo ? (
-                    listMoviesFav?.length !== undefined && listMoviesFav.length !== 0 ? (
+                    listMoviesFav?.length !== undefined &&
+                    listMoviesFav.length !== 0 ? (
                       isFavorite ? (
                         <motion.button
                           whileHover={{ scale: 1.05 }}
@@ -228,15 +233,17 @@ const MovieDetail = ({ movieId }) => {
                       Agregar a favoritos
                     </motion.button>
                   )}
-
                 </div>
               </div>
 
-              <div className="flex flex-col h-2/3  
-               justify-around">
+              <div
+                className="flex flex-col h-2/3  
+               justify-around"
+              >
                 <p
-                  className={`${window.innerWidth > 400 ? "scrollbar" : ""
-                    } max-h-48 overflow-y-auto text-md`}
+                  className={`${
+                    window.innerWidth > 400 ? "scrollbar" : ""
+                  } max-h-48 overflow-y-auto text-md`}
                 >
                   {objectMovieDetail.overview}
                 </p>
@@ -311,35 +318,39 @@ const MovieDetail = ({ movieId }) => {
                       />
                       {/* Fondo oscuro con transparencia */}
                       <div
-                        className={`${actor.id === hoveredActorId
-                          ? "bg-black opacity-60"
-                          : "opacity-0"
-                          } absolute w-3/4 h-3/4 transition-opacity duration-300`}
+                        className={`${
+                          actor.id === hoveredActorId
+                            ? "bg-black opacity-60"
+                            : "opacity-0"
+                        } absolute w-3/4 h-3/4 transition-opacity duration-300`}
                         onClick={() => FindActorMovies(actor.id)}
                       />
                       <div className="absolute w-3/4 h-3/4 text-white flex flex-col items-center justify-center">
                         <h3
-                          className={`text-md text-center ${actor.id === hoveredActorId
-                            ? "opacity-100"
-                            : "opacity-0"
-                            } transition-opacity duration-300`}
+                          className={`text-md text-center ${
+                            actor.id === hoveredActorId
+                              ? "opacity-100"
+                              : "opacity-0"
+                          } transition-opacity duration-300`}
                         >
                           Actor: <br /> {actor.name}
                         </h3>
                         <p
-                          className={`text-sm text-center ${actor.id === hoveredActorId
-                            ? "opacity-100"
-                            : "opacity-0"
-                            } transition-opacity duration-300`}
+                          className={`text-sm text-center ${
+                            actor.id === hoveredActorId
+                              ? "opacity-100"
+                              : "opacity-0"
+                          } transition-opacity duration-300`}
                         >
                           Papel:
                           <br /> {actor.character}
                         </p>
                         <div
-                          className={`absolute right-1 top-1 hover:bg-blue-500 hover:p-1 hover:rounded-full transition duration-500 ease-in-out ${actor.id === hoveredActorId
-                            ? "opacity-100"
-                            : "opacity-0"
-                            } transition-opacity duration-300`}
+                          className={`absolute right-1 top-1 hover:bg-blue-500 hover:p-1 hover:rounded-full transition duration-500 ease-in-out ${
+                            actor.id === hoveredActorId
+                              ? "opacity-100"
+                              : "opacity-0"
+                          } transition-opacity duration-300`}
                         >
                           <AiOutlineEye
                             className="text-3xl"
@@ -374,8 +385,8 @@ const MovieDetail = ({ movieId }) => {
               </div>
             </motion.div>
           </div>
-        </div >
-      </Modal >
+        </div>
+      </Modal>
     </>
   );
 };

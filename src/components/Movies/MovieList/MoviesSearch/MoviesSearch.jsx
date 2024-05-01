@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
-import MovieDetails from "../../MovieDetail/MovieDetail";
+import MovieDetails from "../../movieDetail/MovieDetail";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchTrendingMovies } from "../../../../store/actions/movies/moviesTrending";
 import { motion } from "framer-motion";
 
 export const MoviesSearch = () => {
   const dispatch = useDispatch();
-  const { listMovies, loading, error } = useSelector((state) => state.searchMovies)
+  const { listMovies, loading, error } = useSelector(
+    (state) => state.searchMovies
+  );
   const [selectedMovie, setSelectedMovie] = useState(null);
 
   useEffect(() => {
@@ -25,7 +27,7 @@ export const MoviesSearch = () => {
     );
   }
 
-  if(loading) {
+  if (loading) {
     return (
       <div className="flex items-center justify-center h-screen">
         <div className="animate-spin rounded-full h-32 w-32 border-t-4 border-blue-500"></div>
@@ -35,16 +37,15 @@ export const MoviesSearch = () => {
 
   return (
     <div className="mx-10 py-8">
-      <h2 className="text-6xl text-center mb-7 font-bold text-white bg-black p-2">Búsqueda de Películas</h2>
-      {selectedMovie && (
-        <MovieDetails
-          movieId={selectedMovie}
-        />
-      )}
+      <h2 className="text-6xl text-center mb-7 font-bold text-white bg-black p-2">
+        Búsqueda de Películas
+      </h2>
+      {selectedMovie && <MovieDetails movieId={selectedMovie} />}
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6">
         {listMovies.map((movie) => (
           <motion.div
-            key={movie.id} x
+            key={movie.id}
+            x
             id={movie.id}
             className="relative rounded-lg shadow-md bg-gray-800 overflow-hidden"
             whileHover={{ scale: 1.05 }}
@@ -71,7 +72,6 @@ export const MoviesSearch = () => {
       </div>
     </div>
   );
-
 };
 
 export default MoviesSearch;
