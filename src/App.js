@@ -7,13 +7,13 @@ import "./styles/App.scss";
 // router
 import { PrivateRoute } from "./components/router/privateRoute";
 // components
-import NavBar from "./components/navbar/Navbar.jsx";
-import Home from "./components/home/Home.jsx";
-import MovieTrending from "./components/movies/movieList/moviesTrending/MoviesTrending.jsx";
-import MovieListActors from "./components/movies/movieList/movieListActors/MovieListActors.jsx";
-import MoviesSearch from "./components/movies/movieList/moviesSearch/MoviesSearch.jsx";
-import SignIn from "./components/auth/signIn/SignIn.jsx";
-import SignUp from "./components/auth/signUp/SignUp.jsx";
+import NavBar from "./components/navbar/Navbar";
+import Home from "./components/home/Home";
+import MovieTrending from "./components/movies/movieList/moviesTrending/MoviesTrending";
+import MovieListActors from "./components/movies/movieList/movieListActors/MovieListActors";
+import MoviesSearch from "./components/movies/movieList/moviesSearch/MoviesSearch";
+import SignIn from "./components/auth/signIn/SignIn";
+import SignUp from "./components/auth/signUp/SignUp";
 
 //TODO
 /* import MyAccount from "./components/MyAccount/MyAccount"  */
