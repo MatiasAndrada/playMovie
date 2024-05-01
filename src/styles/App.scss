@@ -1,11 +1,10 @@
 @import "/node_modules/bootstrap/scss/bootstrap.scss";
 //Tailwind
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
 
-
-@import 'variables.scss';
+@import "variables.scss";
 //App
 @import "../components/Home/Home.scss";
 //Navbar
@@ -17,28 +16,27 @@
 //Movie Detail
 @import "../components/Movies/MovieDetail/MovieDetail.scss";
 //Movie List
-@import"../components/Movies/MovieList/MoviesSearch/MoviesSearch.scss";
+@import "../components/Movies/MovieList/MoviesSearch/MoviesSearch.scss";
 
 //Movie Trending
-@import"../components/Movies/MovieList/MoviesTrending/MoviesTrending.scss";
+@import "../components/Movies/MovieList/MoviesTrending/MoviesTrending.scss";
 //Custom Player
 @import "../components/CustomPlayer/CustomPlayer.scss";
 
-
 //reset styles
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-body{
-    background-color: #000000;
+body {
+  background-color: #000000;
 }
 
-.content-container{
-    //restar el tamaño del navbar
-    padding-top: 160px;
-    min-height: calc(100vh - 160px);
-    
+.content-container {
+  //restar el tamaño del navbar
+  padding-top: 160px;
+  max-width: 85%;
+  margin: auto;
+  min-height: calc(100vh - 160px);
 }
