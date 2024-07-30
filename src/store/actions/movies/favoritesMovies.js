@@ -8,7 +8,6 @@ import {
 
 export const getFavoriteMovies = (idUser) => async (dispatch) => {
   dispatch(setLoading(true));
-  console.log("getFavoriteMovies",  idUser)
   try {
     const docRef = doc(db, "userData", idUser);
     const docSnap = await getDoc(docRef);
@@ -91,38 +90,32 @@ export const addFavoriteMovie =
     }
   };
 
+export const deleteFavoriteMovieById =
+  (idUser, movieId) => async (dispatch) => {
+    dispatch(setLoading(true));
+    try {
+      const userRef = doc(db, "userData", idUser);
+      const userSnapshot = await getDoc(userRef);
+      if (userSnapshot.exists()) {
+        const userData = userSnapshot.data();
+        const updatedMovies = userData.movies.filter(
+          (movie) => movie.key !== movieId
+        );
+        await updateDoc(userRef, {
+          movies: updatedMovies,
+        });
 
-export const deleteFavoriteMovieById = (idUser, movieId) => async (
-  dispatch
-) => {
-  dispatch(setLoading(true));
-  try {
-    const userRef = doc(db, "userData", idUser);
-    const userSnapshot = await getDoc(userRef);
-console.log(idUser, movieId)
-    if (userSnapshot.exists()) {
-      const userData = userSnapshot.data();
-      console.log(userData)
-      const updatedMovies = userData.movies.filter(movie => movie.key !== movieId);
-      console.log(updatedMovies)
-
-      await updateDoc(userRef, {
-        movies: updatedMovies,
-      });
-
-      dispatch(getFavoriteMovies(idUser));
+        dispatch(getFavoriteMovies(idUser));
+      }
+    } catch (error) {
+      dispatch(setError(error));
+    } finally {
+      dispatch(setLoading(false));
     }
-  }
-  catch (error) {
-    dispatch(setError(error));
-  } finally {
-    dispatch(setLoading(false));
-  }
-}
+  };
 export const deleteFavoriteMovies = (idUser) => async (dispatch) => {
   dispatch(setLoading(true));
   try {
-    console.log(0)
     const ref = doc(db, "userData", idUser);
     await updateDoc(ref, {
       movies: [],
@@ -133,4 +126,4 @@ export const deleteFavoriteMovies = (idUser) => async (dispatch) => {
   } finally {
     dispatch(setLoading(false));
   }
-}
+};

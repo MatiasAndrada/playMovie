@@ -45,10 +45,7 @@ const MovieDetail = ({ movieId }) => {
     (state) => state.favoriteMovies.listMoviesFav
   );
 
-  console.log("idMovie", movieId);
-  console.log("listMoviesFav", listMoviesFav);
   const isFavorite = listMoviesFav.find((movie) => movie.key === movieId);
-  console.log("isFavorite", isFavorite);
 
   useEffect(() => {
     dispatch(fetchMovieDetail(movieId));

@@ -1,16 +1,17 @@
 import axios from "axios";
-import { setError, setLoading, setActorInfo } from "../../../slices/searchMovies/byActor";
-
+import {
+  setError,
+  setLoading,
+  setActorInfo,
+} from "../../../slices/searchMovies/byActor";
 
 export const fetchMoviesByActor = (actorID) => async (dispatch) => {
   setLoading(true);
   try {
-    console.log(actorID)
-    const API_KEY = process.env.REACT_APP_API_MOVIE_KEY_AUTH;
+    const API_KEY = process.env.REACT_APP_TMDB_KEY;
     const API_URL = `https://api.themoviedb.org/3/person/${actorID}?api_key=${API_KEY}&append_to_response=movie_credits&language=es-ES `;
     const res = await axios.get(API_URL);
     const searchResult = res.data;
-    console.log("res",searchResult)
     searchResult.profile_path = `https://image.tmdb.org/t/p/w500${searchResult.profile_path}`;
     searchResult.movie_credits.cast.forEach((movie) => {
       movie.backdrop_path = `https://image.tmdb.org/t/p/w500${movie.backdrop_path}`;
@@ -18,14 +19,13 @@ export const fetchMoviesByActor = (actorID) => async (dispatch) => {
     });
     //order for popularity
     searchResult.movie_credits.cast.sort((a, b) => b.popularity - a.popularity);
-    console.log("transform",searchResult)
     dispatch(setActorInfo(searchResult));
   } catch (error) {
     dispatch(setError(error.code));
   } finally {
     setLoading(false);
   }
-}
+};
 
 /*
 const axios = require('axios');
