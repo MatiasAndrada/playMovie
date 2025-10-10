@@ -1,6 +1,29 @@
 {
   "name": "playmovie-project",
   "version": "0.1.0",
+  "description": "Plataforma web para explorar, descubrir y gestionar información de películas utilizando la API de TMDB. Incluye búsqueda de películas, actores, trending, favoritos y reproducción de trailers.",
+  "author": {
+    "name": "Matias Andrada",
+    "url": "https://github.com/MatiasAndrada"
+  },
+  "license": "MIT",
+  "homepage": "https://playmovie-web.pages.dev",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MatiasAndrada/playMovie.git"
+  },
+  "keywords": [
+    "movies",
+    "peliculas",
+    "tmdb",
+    "react",
+    "firebase",
+    "redux",
+    "movie-database",
+    "cinema",
+    "entertainment",
+    "streaming"
+  ],
   "private": true,
   "dependencies": {
     "@reduxjs/toolkit": "^2.2.7",

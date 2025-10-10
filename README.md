@@ -1,72 +1,202 @@
-# Proyecto Movie [Working]
+# 🎬 PlayMovie
 
+> Plataforma web para explorar, descubrir y gestionar información de películas utilizando la API de TMDB.
 
-This project was deploy [Ver demo en vivo](https://playmovie.website)
+[![Live Demo](https://img.shields.io/badge/demo-live-green.svg)](https://playmovie-web.pages.dev)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![React](https://img.shields.io/badge/React-18.3-blue.svg)](https://reactjs.org/)
+[![Firebase](https://img.shields.io/badge/Firebase-10.12-orange.svg)](https://firebase.google.com/)
 
+## 🌟 Demo en Vivo
 
-## Available Scripts
+**[Ver PlayMovie en Acción →](https://playmovie-web.pages.dev)**
 
-In the project directory, you can run:
+## 📋 Descripción
 
-### `npm start`
+PlayMovie es una aplicación web moderna que permite a los usuarios explorar el mundo del cine de manera intuitiva y atractiva. Utilizando la API de The Movie Database (TMDB), ofrece información detallada sobre películas, actores, tendencias y mucho más.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## ✨ Características Principales
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- 🔍 **Búsqueda Avanzada**: Busca películas por título o actores
+- 📊 **Trending**: Descubre las películas más populares de la semana
+- ⭐ **Favoritos**: Guarda tus películas favoritas (requiere autenticación)
+- 🎥 **Detalles Completos**: Información detallada de películas incluyendo:
+  - Sinopsis y valoraciones
+  - Reparto y equipo técnico
+  - Trailers y videos relacionados
+  - Imágenes y posters
+- 🎭 **Información de Actores**: Explora la filmografía de tus actores favoritos
+- 📱 **Diseño Responsive**: Optimizado para móviles, tablets y escritorio
+- 🔐 **Autenticación**: Sistema de login con Firebase
+- 🎨 **Interfaz Moderna**: Diseño atractivo con animaciones fluidas
 
-### `npm test`
+## 🛠️ Tecnologías Utilizadas
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Frontend
+- **React** 18.3 - Librería de UI
+- **Redux Toolkit** - Gestión de estado
+- **React Router** - Navegación
+- **React Bootstrap** - Componentes UI
+- **Framer Motion** - Animaciones
+- **Sass** - Estilos avanzados
+- **Tailwind CSS** - Utilidades CSS
 
-### `npm run build`
+### Backend & Servicios
+- **Firebase** - Autenticación y base de datos
+- **TMDB API** - Datos de películas
+- **Axios** - Peticiones HTTP
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Herramientas de Desarrollo
+- **React Scripts** - Configuración y build
+- **ESLint** - Linting
+- **Jest** - Testing
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## 🚀 Instalación y Configuración
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Prerrequisitos
 
-### `npm run eject`
+- Node.js (v14 o superior)
+- npm o yarn
+- Cuenta de Firebase
+- API Key de TMDB
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Pasos de Instalación
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+1. **Clonar el repositorio**
+```bash
+git clone https://github.com/MatiasAndrada/playMovie.git
+cd playMovie
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+2. **Instalar dependencias**
+```bash
+npm install
+# o
+yarn install
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+3. **Configurar variables de entorno**
 
-## Learn More
+Crea un archivo `.env` en la raíz del proyecto con las siguientes variables:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```env
+# TMDB API Configuration
+REACT_APP_API_MOVIE_URL=https://api.themoviedb.org/3
+REACT_APP_TMDB_ACCESS_TOKEN=tu_tmdb_access_token_aqui
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+# Firebase Configuration
+REACT_APP_API_KEY=tu_firebase_api_key
+REACT_APP_AUTH_DOMAIN=tu_proyecto.firebaseapp.com
+REACT_APP_PROJECT_ID=tu_proyecto_id
+REACT_APP_STORAGE_BUCKET=tu_proyecto.appspot.com
+REACT_APP_MESSAGING_SENDER_ID=tu_sender_id
+REACT_APP_APP_ID=tu_app_id
+```
 
-### Code Splitting
+4. **Obtener credenciales**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+   **TMDB API:**
+   - Regístrate en [The Movie Database](https://www.themoviedb.org/)
+   - Ve a tu perfil → Settings → API
+   - Genera un nuevo API Key y Access Token
 
-### Analyzing the Bundle Size
+   **Firebase:**
+   - Crea un proyecto en [Firebase Console](https://console.firebase.google.com/)
+   - Ve a Project Settings → General
+   - En "Your apps", selecciona la configuración web
+   - Copia las credenciales a tu archivo `.env`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+5. **Iniciar el servidor de desarrollo**
+```bash
+npm start
+# o
+yarn start
+```
 
-### Making a Progressive Web App
+La aplicación se abrirá en [http://localhost:3000](http://localhost:3000)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## 📦 Scripts Disponibles
 
-### Advanced Configuration
+```bash
+# Iniciar en modo desarrollo
+npm start
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+# Crear build de producción
+npm run build
 
-### Deployment
+# Ejecutar tests
+npm test
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+# Eject configuración (irreversible)
+npm run eject
+```
 
-### `npm run build` fails to minify
+## 📁 Estructura del Proyecto
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```
+playMovie/
+├── public/              # Archivos públicos
+│   ├── bg/             # Imágenes de fondo
+│   ├── icons/          # Iconos de la aplicación
+│   └── index.html      # HTML principal
+├── src/
+│   ├── assets/         # Recursos (SVG, fuentes)
+│   ├── components/     # Componentes React
+│   │   ├── auth/       # Autenticación
+│   │   ├── home/       # Página principal
+│   │   ├── movies/     # Componentes de películas
+│   │   ├── navbar/     # Barra de navegación
+│   │   └── ...
+│   ├── firebase/       # Configuración Firebase
+│   ├── store/          # Redux store
+│   │   ├── actions/    # Redux actions
+│   │   └── slices/     # Redux slices
+│   ├── styles/         # Estilos globales
+│   └── App.js          # Componente raíz
+├── .env                # Variables de entorno (no incluido)
+└── package.json        # Dependencias
+```
+
+## 🔑 Características de Seguridad
+
+- Las credenciales de API están protegidas mediante variables de entorno
+- Autenticación segura con Firebase Authentication
+- Las imágenes estáticas se sirven desde `/public` para mejor rendimiento
+- Firebase Storage disponible para contenido dinámico futuro
+
+## 🤝 Contribuciones
+
+Las contribuciones son bienvenidas! Si deseas contribuir:
+
+1. Fork el proyecto
+2. Crea una rama para tu feature (`git checkout -b feature/AmazingFeature`)
+3. Commit tus cambios (`git commit -m 'Add some AmazingFeature'`)
+4. Push a la rama (`git push origin feature/AmazingFeature`)
+5. Abre un Pull Request
+
+## 📝 Licencia
+
+Este proyecto está bajo la Licencia MIT - ver el archivo [LICENSE](LICENSE) para más detalles.
+
+## 👨‍💻 Autor
+
+**Matias Andrada**
+- GitHub: [@MatiasAndrada](https://github.com/MatiasAndrada)
+- Website: [playmovie.website](https://playmovie-web.pages.dev)
+
+## 🙏 Agradecimientos
+
+- [The Movie Database (TMDB)](https://www.themoviedb.org/) por proporcionar la API
+- [Firebase](https://firebase.google.com/) por los servicios de backend
+- Todos los contribuidores y usuarios de la aplicación
+
+## 📞 Soporte
+
+Si encuentras algún problema o tienes sugerencias, por favor:
+- Abre un [Issue](https://github.com/MatiasAndrada/playMovie/issues)
+- Contacta al desarrollador
+
+---
+
+⭐ Si te gusta este proyecto, dale una estrella en GitHub!
+
