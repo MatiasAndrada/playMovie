@@ -32,7 +32,7 @@ const SignIn = () => {
   }
 
   // Rutas de imágenes locales
-  const bgImage = '/bg/SignIn.png';
+  const bgImage = '/bg/SignIn.webp';
   const iconCard = '/icons/SignIn.png';
 
   return (
