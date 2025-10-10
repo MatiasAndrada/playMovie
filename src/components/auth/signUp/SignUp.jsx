@@ -1,29 +1,25 @@
 //react
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 //react-router-dom
-import { Link, useNavigate } from "react-router-dom";
-
-//firebase-storage
-import { fileDownload } from "../../../firebase/fileDownload";
+import { Link, useNavigate } from 'react-router-dom';
 //redux
-import { useDispatch, useSelector } from "react-redux";
-import { signUp } from "../../../store/actions/auth/signUpAction";
+import { useDispatch, useSelector } from 'react-redux';
+import { signUp } from '../../../store/actions/auth/signUpAction';
 
 const SignUp = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [datos, setDatos] = useState({
-    email: "",
-    password: "",
+    email: '',
+    password: '',
   });
   const auth = useSelector((state) => state.auth);
 
   useEffect(() => {
     if (auth.activo) {
-      navigate("/");
+      navigate('/');
     }
   }, [auth, navigate]);
-
 
   function handleInputChange(event) {
     setDatos({
@@ -35,27 +31,17 @@ const SignUp = () => {
     e.preventDefault();
     dispatch(signUp(datos.email, datos.password));
   };
-  async function setImg(imgID, url) {
-    await fileDownload(url)
-      .then((res) => {
-        const img = document.getElementById(imgID);
-        img.src = res;
-      })
-      .catch((err) => {
-        if (err.name !== "TypeError") {
-          console.log(err);
-        }
-      });
-  }
-  setImg("bg-img", "img/bg/SignUp.png");
-  setImg("icon-card", "img/icons/SignUp.png");
+
+  // Rutas de imágenes locales
+  const bgImage = '/bg/SignUp.png';
+  const iconCard = '/icons/SignUp.png';
 
   return (
     <div className="container__card">
-      <img src="" id="bg-img" className="img-bg" alt="Background SignUp" />
+      <img src={bgImage} className="img-bg" alt="Background SignUp" />
       <div className="card-d">
         <div className="card-header">
-          <img src="" id="icon-card" className="icon-card" alt="Icon account" />
+          <img src={iconCard} className="icon-card" alt="Icon account" />
         </div>
         <div className="card-body">
           <h2 className="title">Crear cuenta</h2>
